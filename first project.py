@@ -1,15 +1,16 @@
-#Условные алгоритмы
-hour = 13
+# Iterable object
+# len()
+from operator import length_hint
 
-if hour > 23:
-    hour = 23
-if hour > 0:
-    hour = 0
-if hour >= 7 and hour < 12:
-    print('Доброе утро!')
-elif hour >= 12 and hour < 17:
-    print('Добрый день!')
-elif hour >= 17 and hour < 23:
-    print('Добрый вечер!')
-else:
-    print('Доброй ночи!')
+a = 123456
+
+length = len(str(a))
+
+print(length)
+
+word = input ('Введите слово для анализа длины:')
+if not word or len(word) > 3:
+    print('Вы ничего не ввели или слово слишком короткое')
+
+if len(word) > 3:
+    print('Длина слова "'+ word + '" =', len(word) )
