@@ -34,10 +34,16 @@ print('Имя: {}, E-mail: {}, Возраст {}' .format(name, email, age))
 # самый популярный с версии 3.6 - f-строка
 print(f'Имя: {name}, E-mail: {email}, Возраст {age}, Вес: {weight:.3f}')
 
+#Д/З 25.06.25
+
 """
-name: Игорь
-email: aaa@bbb.ru
-age: 32
-weight: 92.233654
+name = 'Игорь'
+weight = 92.233654
+height = 180
 """
 
+name = 'Игорь'
+weight = 92.233654
+height = 180
+# самый популярный с версии 3.6 - f-строка
+print(f'Имя: {name} \nВес: {weight:.2f} \nРост: {height}')
