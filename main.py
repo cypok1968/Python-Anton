@@ -29,10 +29,14 @@ else:
 promt = """Витязь на распутье
 Налево (L) пойдёшь, вольну-волю обретёшь...
 Направо (R) пойдёшь, коня потеряешь...
-Прямо (F) пойдёшь, сыт и весел будешь...
+Прямо (F) пойдёшь, сыт и весел будешь..."""
 print(promt)
-#choice = input('Куда идём (L, R или F): ')
-#if choice == 'L':
-
-
-
+choice = input('Куда идём (L, R или F): ')
+if choice == 'L' or choice == 'l':
+    print('Вольная воля')
+elif choice == 'R'or choice == 'r':
+    print('Конь сбежал')
+elif choice == 'F'or choice == 'f':
+    print('Сыт и весел')
+else:
+    print('Выбор не ясен')
