@@ -68,3 +68,19 @@ b = temp
 
 print('После:')
 print('a =', a, 'b=', b)
+
+# Iterable object
+# len()
+from operator import length_hint
+
+a = 123456
+
+length = len(str(a))
+
+print(length)
+
+word = input ('Введите слово для анализа длины:')
+if not word or len(word) < 4:
+    print('Вы ничего не ввели или слово слишком короткое')
+else:
+    print('Длина слова "'+ word +'" =', len(word) )
