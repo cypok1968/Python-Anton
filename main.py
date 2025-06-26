@@ -366,3 +366,10 @@ print(f'Произведение: {prod}')
 print(f'Ср. арифметическое: {average}')
 print(f'Минимум: {min_val}')
 print(f'Максимум: {max_val}')
+
+# factorial
+# N = 5
+# fact = 1
+#
+# for i in range(1, N + 1):
+#     fact = *=
