@@ -36,14 +36,15 @@ print(f'Имя: {name}, E-mail: {email}, Возраст {age}, Вес: {weight:.
 
 #Д/З 25.06.25
 
+promt = """
+name: Игорь
+weight: 92.24
+height: = 180
 """
-name = 'Игорь'
-weight = 92.233654
-height = 180
-"""
+print (promt)
 
 name = 'Игорь'
-weight = 92.233654
+weight = 92.23654154623
 height = 180
-# самый популярный с версии 3.6 - f-строка
+
 print(f'Имя: {name} \nВес: {weight:.2f} \nРост: {height}')
