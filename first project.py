@@ -1,36 +1,23 @@
-# цикл for
-# for <переменная> in ...:
-# команды
-#word = 'поток'
-
-#for ch in word:
-#    print(ch)
-
-# итератор range (start, stop, step)
-
-#for i in range(2, 13, 2):
-#    print(i)
-
-# итератор range (0, stop, 1) - по умолчанию если не указаны 1 и 3 позиции
-
-#for i in range(13):
-#    print(i)
-
-#for i (или _) in range(10):
-#    print('Привет')
-
-for i in range(1, 101):
-    if i % 10 == 5:
-        if i == 15:
-            continue
-    print(i)
-
-for i in range(1, 101):
-    if i % 10 == 5 and i != 15:
-        print(i)
+# min, max, average, summ. production
+N = 5
+total = 0
+prod = 1
+min_val = float('inf') # + бесконечность
+max_val = float('-inf') # - бесконечность
 
 
+for _ in range(N):
+    num = int(input('Введите целое число: '))
+    if num < min_val:
+        min_val = num
+    if num < max_val:
+        max_val = num
+    total += num
+    prod *= num
+    average = total / N
 
-
-
-
+print(f'Сумма: {total}')
+print(f'Произведение: {prod}')
+print(f'Ср. арифметическое: {average}')
+print(f'Минимум: {min_val}')
+print(f'Максимум: {max_val}')
