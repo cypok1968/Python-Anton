@@ -1,15 +1,21 @@
 # Строки (immutable, iterable)
 # Таблица символов Unicode
-
-s = '\xB0'
-u = ('\u2602')
-
 # две удобные функции
 # ord(символ) - возвращает код символа в Unicode
 # chr(код в десятичной сист.) - возвращает символа Unicode-коду
+s = set()
+word = input('Введите фразу для зашифровки: ')
+#
+# # Зашифровываем
+for ch in word:
+    s.add(ord(ch))
 
-print(u)
-print('25' + s + 'C')
-print(f'Код зонта в Unicode: {ord('☂')}')
-print(chr(9730))
-print(chr(176)) #ASCII коды от IBM (до 176 символа для всех прочих таблиц символов и для Unicode)
+print(s)
+
+# Расшифровываем
+
+res = ''
+for i in s:
+    res += chr(i)
+
+print(res)
