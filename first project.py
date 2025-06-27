@@ -1,7 +1,6 @@
 # Строки (immutable, iterable)
 # Таблица символов Unicode
 
-
 s = '\xB0'
 u = ('\u2602')
 
