@@ -443,7 +443,6 @@ print(item)
 # Города
 s = set()
 
-city = input('Назовите город: ')
 while (city := input('Назовите город: ')) != '':
     if city in s:
         print('Такой город уже был')
@@ -458,6 +457,30 @@ cards = {3, 7, 'туз', 'валет', 'король', 'дама'}
 
 while cards: # сдаем пока карты есть в колоде
     print(cards.pop())
+
+# Сдаем карты кроме туза, оставляем в колоде
+cards = {3, 7, 'туз', 'валет', 'король', 'дама'}
+
+# 1 вариант
+
+ace = {'туз'}
+result = cards - ace
+print(result)
+
+# 2 вариант
+
+t_is = False
+
+while cards:
+    card = cards.pop() # удаленный элемент, карта которую случайным образом сдали из колоды cards
+    if card == 'туз':
+        cards.add(card) # возврат карты в колоду, если это туз
+        t_is = True
+    else:
+        print(card)
+
+    if t_is and len(cards) == 1:
+        break
 
 # Операции над множествами
 a = {3, 5, 7}
@@ -493,3 +516,4 @@ print(c)
 c = a.symmetric_difference(b)
 # c = b ^ a
 print(c)
+
