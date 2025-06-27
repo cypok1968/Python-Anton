@@ -416,3 +416,5 @@ elif weighta > weightb:
     print('Фальшивая вторая монета !')
 else:
     print('Фальшивая первая монета !')
+
+
