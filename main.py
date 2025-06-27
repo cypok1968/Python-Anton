@@ -452,3 +452,18 @@ while (city := input('Назовите город: ')) != '':
 print(f'Итого было названо; {len(s)} городов')
 for item in s:
     print('\t', item)
+
+# Сдаем карты
+cards = {3, 7, 'туз', 'валет', 'король', 'дама'}
+
+while cards: # сдаем пока карты есть в колоде
+    print(cards.pop())
+
+# Сдаем карты
+cards = {3, 7, 'туз', 'валет', 'король', 'дама'}
+
+for item in cards:  # сдаем пока карты есть в колоде
+    if item != 'туз'
+        print(f'Удалён: {cards.pop()}')
+
+print(cards)
