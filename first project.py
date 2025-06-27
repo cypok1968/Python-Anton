@@ -1,11 +1,11 @@
 # Д/З 26.06.25 "Hахождение фальшивой монеты методом взвешивания на рычажных весах"
-weight a = input ('Введите вес первой монеты: ')
-weight b = input ('Введите вес второй монеты: ')
-weight c = input ('Введите вес третьей монеты: ')
+weightA = input ('Введите вес первой монеты: ')
+weightB = input ('Введите вес второй монеты: ')
+weightC = input ('Введите вес третьей монеты: ')
 
-if weight a == weight b:
+if weightA == weightB:
     print('Фальшивая третья монета !')
-elif weight a > weight b:
+elif weightA > weightB:
     print('Фальшивая вторая монета !')
 else:
     print('Фальшивая первая монета !')
