@@ -653,3 +653,17 @@ if s.lower().startswith('смо'):
 
 if s.endswith('еть'):
     print('Да')
+
+    # 1. replace ('что, 'на что') полная замена
+    # 2. replace ('что, 'на что', сколько раз) - число замен
+
+    s = 'тиливизор'
+
+    print(s.replace('и', 'е', 2))
+
+    s = '+7-012-345-67-89'  # +7 (012) 345-6789
+
+    res = s.replace('-', ' (', 1)
+    res = res.replace('-', ') ', 1)
+
+    print(res)
