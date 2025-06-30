@@ -860,3 +860,22 @@ for st in students:
     student, average = st # unpack
     print('Студент: ', student)
     print('Средний балл: ', average)
+
+# Функция sorted() - возвращает сортированный список
+
+# 1 способ с sorted()
+s = {'Иванов', 'Петров', 'Сидоров'}
+r = False
+
+lst = sorted(s, reverse=r)
+
+print(*lst, sep=', ')
+
+2 способ без sorted()
+
+s = {'Иванов', 'Петров', 'Сидоров'}
+
+lst = list(s)
+lst.sort()
+
+print(*lst, sep=', ')
