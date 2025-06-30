@@ -906,3 +906,10 @@ for i, v in enumerate(fio): # нумерует элементы списка и 
 
     text3 = ' и также '.join(lst)
     print(text3)
+
+    # Методы строки split() и join() - работают только с элементами строк, т.е лишь с символами!!!
+
+    text = ' P y t h o n '
+    temp = text.split()
+    res = ''.join(text.split())  # операция убрать все пробелы
+    print(res)
