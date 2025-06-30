@@ -1,18 +1,19 @@
 # Кортеж (tuple) тот же список, но неизменяемый (отличие от строки)
-# Студент и средний балл
+# Функция sorted() - возвращает сортированный список
 
+# 1 способ с sorted()
+s = {'Иванов', 'Петров', 'Сидоров'}
+r = False
 
-N=3
-students = []
+lst = sorted(s, reverse=r)
 
-for st in range(N):
-    student, average = input('ФИО: '), float(input('Средний балл: '))
-    students.append((student, average)) # создание кортежа из трёх списков со средними баллами (3 студента)
-                                        # pack
-print(students)
+print(*lst, sep=', ')
 
-for st in students:
-    student, average = st # unpack
-    print('Студент: ', student)
-    print('Средний балл: ', average)
+2 способ без sorted()
 
+s = {'Иванов', 'Петров', 'Сидоров'}
+
+lst = list(s)
+lst.sort()
+
+print(*lst, sep=', ')

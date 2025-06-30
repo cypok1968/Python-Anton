@@ -838,9 +838,25 @@ a=3
 b=4
 print((a, b) > (b, a))
 
-
 channels = ['red', 'green', 'blue']
 channels = [128, 200, 155]
 r, g, b = channels # распаковка unpack
 
 print(r, g, b)
+
+# Студент и средний балл
+
+
+N=3
+students = []
+
+for st in range(N):
+    student, average = input('ФИО: '), float(input('Средний балл: '))
+    students.append((student, average)) # создание кортежа из трёх списков со средними баллами (3 студента)
+                                        # pack
+print(students)
+
+for st in students:
+    student, average = st # unpack
+    print('Студент: ', student)
+    print('Средний балл: ', average)
