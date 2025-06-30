@@ -642,3 +642,14 @@ for letter in message:
 # new_key = (t - key) % len(alphabet)
 print('Зашифрованное сообщение: ', encrypted)
 
+# Строки (immutable, iterable)
+# Начало и окончание строки
+# startswith, endswith
+
+s = 'Смотреть'
+
+if s.lower().startswith('смо'):
+    print('Да')
+
+if s.endswith('еть'):
+    print('Да')
