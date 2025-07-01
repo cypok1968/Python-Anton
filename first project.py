@@ -27,8 +27,6 @@
 # result.sort()
 # for i in range(len(result)):
 #     print(f'\t{i+1}. {result[i]}')
-from main import message
-
 # list = set (lst)
 # while (text := input('Введите сообщение: ')) != '':
 #     lst = text.split()
