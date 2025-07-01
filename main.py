@@ -1010,3 +1010,10 @@ for i, v in enumerate(fio): # нумерует элементы списка и 
     approved = [500, 800]
     b = [int(i) for i in n.split() if int(i) in approved]
     print(b)
+
+text = 'Списочные выражения применяются для эффективности кода'
+
+#res = [a for a in text.split() if (text.index(a) + 1) % 3 == 0]
+res = [a for a in text.split()[2::3]] # создание списка
+#res = set(a for a in text.split()[2::3]) # создание множества кортеж
+print(res)
