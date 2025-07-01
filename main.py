@@ -913,3 +913,100 @@ for i, v in enumerate(fio): # нумерует элементы списка и 
     temp = text.split()
     res = ''.join(text.split())  # операция убрать все пробелы
     print(res)
+
+    # # ДЗ 30.06.25
+    #
+    # # преобразовать фразу "Полна неожиданностей улица. Под глазом фонарь. К чаю аптека. Аптека. Улица. Фонарь. А.Блок."
+    # # в соответствии со стоп листом вывести исходный текст (собрать исходный список), текст без слов из стоп листа, пронумероанные
+    # # оставшиеся слова в алфавитном порядке, без повтора и пронумерованные
+    #
+    # result = [] # создаем пустой список для элементов искомого текста
+    #
+    # #Вводим фразу: Полна неожиданностей улица. Под глазом фонарь. К чаю аптека. Аптека. Улица. Фонарь. А.Блок.
+    # text = input('Введите строку изначальной фразы: ').strip().lower()
+    # stop_list = ['полна', 'неожиданностей', 'под', 'глазом', 'к', 'чаю'] # ввод запрещённых слов
+    #
+    # lst = text.split() # удаление пробелов
+    # list = list (set(lst)) # удаление повторов
+    #
+    # result = [item for item in list if item not in stop_list]
+    # # вывод 3 списков со словами в алфавитном порядке, пронумерованными и без повторов
+    # print(f'Изначальная фраза содержит список из {len(list)} слов и знаков: ')
+    # list.sort()
+    # for i in range(len(list)):
+    #     print(f'\t{i+1}. {list[i]}')
+    # print(f'Запрещённый текст содержит список из {len(stop_list)} слов и знаков: ')
+    # list.sort()
+    # for i in range(len(stop_list)):
+    #     print(f'\t{i+1}. {stop_list[i]}')
+    # print(f'Исходный текст содержит список из {len(result)} слов и знаков: ')
+    # result.sort()
+    # for i in range(len(result)):
+    #     print(f'\t{i+1}. {result[i]}')
+    # list = set (lst)
+    # while (text := input('Введите сообщение: ')) != '':
+    #     lst = text.split()
+    # for item in list:
+    #     if item not in stop_list:
+    #         list.append(item)
+    # res = sorted(temp)
+    # for a, b in enumerate(res, 1):
+    #     print(f'{a}. {b}')
+    # commas = (',', '!', '.', '?', '-', ':')
+    # text = input('Введите строку изначальной фразы: ').strip().lower()
+    # stop_list = ['полна', 'неожиданностей', 'под', 'глазом', 'к', 'чаю'] # ввод запрещённых слов
+    # for z in commas:
+    #     text = text.replace(z, _new:)
+    # lst = text.split()
+    # result = sorted(set(lst) - stop_list)
+    # for a, b in enumerate(result, 1):
+    #     print(f'{a}. {b}')
+
+    commas = (',', '!', '.', '?', '-', ':')
+    message = input('Введите строку изначальной фразы: ').strip().lower()
+    stop_list = ['полна', 'неожиданностей', 'под', 'глазом', 'к', 'чаю']  # ввод запрещённых слов
+    for z in commas:
+        message = message.replace(z, _new: '')
+        lst = message.split()
+        result = sorted(set(lst) - stop_list)
+        for a, b in enumerate(result, 1):
+            print(f'{a}. {b}')
+
+    # список квадратов чисел
+    # 1 вариант создания списка
+    # squares = [] # пустой список
+    #
+    # for i in range(10):
+    #     squares.append(i ** 2)
+    #
+    # print(*squares,sep=', ')
+    #
+    # # 2 вариант создания списка
+    # squares = [i ** 2 for i in range(10)] # список: на 1 месте - что попадет, на 2 месте - закономерность попадания
+    #
+    # print(*squares,sep=', ')
+
+    # список квадратов четных чисел
+    squares = [i ** 2 for i in range(10) if i % 2 == 0]  # до пробела 1 часть - что, 2-я - закон, 3-я - условие
+    # условие выбора операндов для создания спискаЖ если остаток от деления операнда на 2 равен 0
+    print(*squares, sep=', ')
+
+    # произведение i и j
+    # тип списочного вычисления списка
+    print([i * j for i in range(3) for j in range(3)])
+    # вложенный тип создания вычисления списка
+    for i in range(3):
+        for j in range(3):
+            print(i * j)
+
+    n = '500 600 700 800'  # имеется строка
+    # создаем список по условию
+    # 1 вариант
+    a = [int(i) for i in n.split()]
+    print(a)
+    # 2 вариант сразу выводим список на экран
+    print([int(i) for i in n.split()])
+    # введем условие для вывода элементов списка на экран после содания списка b
+    approved = [500, 800]
+    b = [int(i) for i in n.split() if int(i) in approved]
+    print(b)
