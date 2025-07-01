@@ -6,33 +6,31 @@
 # Синтаксис:
 # def <имя функции>([параметры]):
 #     команды (на уровне отступа)
-from traceback import print_list
+# Чистая функция не меняет после использования глобальные переменные (внешние данные вне функции)
+# Return value
+def square(num):
+    return num ** 2
 
-person = 'Пётр' # глобальная переменная определяемая вне функции
-count = 0
+def even_odd(num):
+    if num % 2 == 0:
+        return 'Чётное' # завершение работы функции по условию
+    return 'Нечётное' # завершение работы функции при невыполнении условия
+    print('Привет') # до этой строки выполнение функции не дойдёт, т.к. цикл завершен
 
-def greet(name):
-    print('Привет,', name) # определение функции "вывод строки", в первой строке  - число использования f
-    print(count)
-
-def increment():
-    global count # разрешение на изменение функцией значения глобальной переменной (в искл. случае!)
-    count += 1
-
-def print_list(array=None):
-    if array is None:
-        array = []
-    for item in array:
-        print(item)
+def print_string(s=None):
+    if s is None:
+        return
+    print(s)
 
 
-# def print_list(name):
-#     print(name) # определение функции "вывод строки", в первой строке  - число использования f
 
-# increment()
-greet('Дмитрий') # задание аргумента
-greet(person) # при вызове функции , берётся копия глобальной переменной
-print_list()
+
+t = square(5)
+t = square(t) # функция не является чистой т.к. меняет глобальную t
+print(even_odd(5))
+print_string()
+print(t)
+
 
 
 
