@@ -1,5 +1,5 @@
 # # ДЗ 30.06.25
-
+#
 # # преобразовать фразу "Полна неожиданностей улица. Под глазом фонарь. К чаю аптека. Аптека. Улица. Фонарь. А.Блок."
 # # в соответствии со стоп листом вывести исходный текст (собрать исходный список), текст без слов из стоп листа, пронумероанные
 # # оставшиеся слова в алфавитном порядке, без повтора и пронумерованные
@@ -27,3 +27,23 @@
 # result.sort()
 # for i in range(len(result)):
 #     print(f'\t{i+1}. {result[i]}')
+from main import message
+
+# list = set (lst)
+# while (text := input('Введите сообщение: ')) != '':
+#     lst = text.split()
+# for item in list:
+#     if item not in stop_list:
+#         list.append(item)
+# res = sorted(temp)
+# for a, b in enumerate(res, 1):
+#     print(f'{a}. {b}')
+# commas = (',', '!', '.', '?', '-', ':')
+# text = input('Введите строку изначальной фразы: ').strip().lower()
+# stop_list = ['полна', 'неожиданностей', 'под', 'глазом', 'к', 'чаю'] # ввод запрещённых слов
+# for z in commas:
+#     text = text.replace(z, _new:)
+# lst = text.split()
+# result = sorted(set(lst) - stop_list)
+# for a, b in enumerate(result, 1):
+#     print(f'{a}. {b}')
