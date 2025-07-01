@@ -966,10 +966,10 @@ for i, v in enumerate(fio): # нумерует элементы списка и 
     message = input('Введите строку изначальной фразы: ').strip().lower()
     stop_list = ['полна', 'неожиданностей', 'под', 'глазом', 'к', 'чаю']  # ввод запрещённых слов
     for z in commas:
-        message = message.replace(z, _new: '')
+        message = message.replace(z, '')
         lst = message.split()
-        result = sorted(set(lst) - stop_list)
-        for a, b in enumerate(result, 1):
+        res = sorted(set(lst) - stop_list)
+        for a, b in enumerate(res, 1):
             print(f'{a}. {b}')
 
     # список квадратов чисел
