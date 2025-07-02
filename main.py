@@ -1337,3 +1337,25 @@ print(num_to_word(16))
 # array = tuple(generate_list())
 #
 # print(array)
+
+# return vs yield - оба оператора возвращают значения переменных,
+
+
+# def print_goodbye(arg):
+#     print('goodbye', end='')
+#
+#
+# def print_cruel(arg):
+#     print('cruel', end='')
+#
+#
+# def print_world(arg):
+#     print('world', end='')
+#
+#
+# def main():
+#     print_goodbye(1)
+#     print_cruel(1)
+#     print_world(1)
+#
+# main ()
