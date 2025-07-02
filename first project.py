@@ -1,3 +1,4 @@
+# is на практике
 def print_array(array: list, start: int = None):
     if start is not None and start > len(array):
         return
