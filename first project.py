@@ -1,68 +1,53 @@
 #Функция с переменным числом аргументов, изменяется с помощью оператора ввода *args
 # эта функция позволяет ввести сначала именной аргумент first и переменное число арг. (за ним!)
 
-def multy(*args, first):
-    # print(len(args)) # подсчет числа аргументов
-    # print(args) # возможность обращаться к каждому аргументу по индексу или перебором в цикле
-    # if len(args) == 0:
-    #     return 0
-    if not args:
-        return 0
-    result = 1
-    for arg in args:
-        result *= arg # возвращает произведение неограниченное (неопределено) кол-во аргументов
-    return result
 
-print(multy(2, 2, 3, 4, first=0)) # выводим любое количество заданных аргументов
-
-# def multy(first, *args):
-#     # print(len(args)) # подсчет числа аргументов
-#     # print(args) # возможность обращаться к каждому аргументу по индексу или перебором в цикле
-#     # if len(args) == 0:
-#     #     return 0
-#     if not args:
-#         return 0
-#     result = 1
-#     for arg in args:
-#         result *= arg # возвращает неограниченное (изначально неизвестное) кол-во аргументов
+# def calc(*args: tuple, operator: str = '+') -> any:
+#     match operator:
+#         case '+':
+#             result = 0
+#             for i in args:
+#                 result += i
+#         case '*':
+#             result = 1
+#             for i in args:
+#                 result *= i
+#         case _: # аналог else - все остальные значения operator (по default)
+#             return 'Так нельзя'
 #     return result
 #
-# print(multy(2, 2, 3, 4)) # выводим любое количество заданных аргументов
+#
+# print(calc(1,2,3, operator='*'))
 
-# def fio(name, surname):
-#     return f'{name} {surname}' # возвращает именованные аргументы
-#
-#
-# #print(fio(name='Остап', surname='Бендер'))
-# # или
-# print(fio(surname='Бендер', name='Остап'))
-
-# def multy(*args):
-#     # print(len(args)) # подсчет числа аргументов
-#     # print(args) # возможность обращаться к каждому аргументу по индексу или перебором в цикле
-#     # if len(args) == 0:
-#     #     return 0
-#     if not args:
-#         return 0
-#     result = 1
-#     for arg in args:
-#         result *= arg # возвращает неограниченное (изначально неизвестное) кол-во аргументов
-#     return result
-#
-# print(multy(1, 2, 3, 4)) # выводим любое количество заданных аргументов
+def sandwich(type_of_meal, with_onion=False, with_tomato=False):
+    print('Булочка')
+    if with_onion:
+        print('Лук')
+    print(type_of_meal)
+    if with_tomato:
+        print('Помидоры')
+    print('Булочка')
 
 
 
-# Unpack и *
-# При распаковке * может быть только у одного аргумента, который выводит множество оставшихся элем.
-# def coordinates() -> tuple:
-#     return 5.4, 3.2, 3.8, 7.2, 4.6
-#
-# x, y, *rest = coordinates()
-# # распаковка если мы не знаем количество элементов выводимых из функции
-#             # точно знаем, что не меньше 2-х, остальные (возможно добавленные позже) через *rest
-#             # выводим через множество (по остаточному принципу с символом *)
-# print(f'x = {x}, y = {y}, rest = {rest}')
-#
-# *names, surname = 'Остап Сулейман Бендер'.split() # где символ *, там выводим списком (множеством)
-# print(names, surname)
+
+def print_any(*args, **kwarg):
+    for i in args:
+      print(i)
+    for k, v in kwarg.items():
+        print(k, '=', v) # создание словаря
+# **additional - Kwargs для резервирования дополнительной (неизвестной заранее) позиции для инфо
+def profile(name, surname, city, *children, **additional):
+    print(f'Имя: {name}')
+    print(f'Фамилия: {surname}')
+    print(f'Из города: {city}')
+    if len(children) > 0:
+        print('Дети:', ', '.join(children) )
+    print('Хобби:', ', '.join(additional['hobbies']))
+    # print(additional)
+
+profile('Дмитрий', 'Колесов', 'Волгоград',
+        'Мария', 'Пётр', 'Василий', hobbies=['Филателия', 'Шахматы'])
+
+# print_any('Дмитрий', 'Колесов', citi='Москва', age=27)
+# sandwich(type_of_meal='котлета', with_onion=True)
