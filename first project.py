@@ -12,7 +12,6 @@ print(id(my_refregirator) == id(his_refregirator))
 temp = None
 print(type(temp))
 print(temp is None) # print(temp == None) - запись сравнения не корректна, но работает
-
 temp = 1
 print(type(temp))
 print(temp == 1)
