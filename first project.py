@@ -1,43 +1,15 @@
-# is на практике
-def print_array(array: list, start: int = None):
-    if start is not None and start > len(array):
-        return
-    if start is None:
-        start = 0
-    for i in range(start, len(array)):
-            print(array[i])
+# Unpack
+# При распаковке * может быть только у одного аргумента, который выводит множество оставшихся элем.
 
+def coordinates() -> tuple:
+    return 5.4, 3.2, 3.8, 7.2, 4.6
 
-a = [1, 2, 3]
-print_array(a, 1) # ,без start: n распечатывается весь список
+x, y, *rest = coordinates()
+# распаковка если мы не знаем количество элементов выводимых из функции
+            # точно знаем, что не меньше 2-х, остальные (возможно добавленные позже) через *rest
+            # выводим через множество (по остаточному принципу с символом *)
+print(f'x = {x}, y = {y}, rest = {rest}')
 
-# Оператор is: a is b -> когда a и b - один и тот же объект
-# my_refregirator = ['колбаса', 'масло', 'сыр']
-# # his_refregirator = ['колбаса', 'масло', 'сыр']
-# #his_refregirator = my_refregirator # не создает новый объект, а только ссылку на тот же id-объект
-# his_refregirator = my_refregirator.copy() # или [:] - создание копии с другим ID
-# my_refregirator += ['мясо']
-# print(his_refregirator)
-# print(my_refregirator is his_refregirator)
-# print(my_refregirator == his_refregirator)
-# print(id(my_refregirator) == id(his_refregirator))
-#
-# temp = None
-# print(type(temp))
-# print(temp is None) # print(temp == None) - запись сравнения не корректна, но работает
-# temp = 1
-# print(type(temp))
-# print(temp == 1)
-
-# d = {'a': 1}
-# print(id(d))
-# d['a'] += 1 # меняем изменяемый объект (словарь), при этом индекс не меняется
-# print(id(d))
-#
-# a = [0]
-# print(id(a))
-# a[0] += 1 # меняем изменяемый объект (список), при этом индекс не меняется
-# print(id(a))
-
-
+*names, surname = 'Остап Сулейман Бендер'.split() # где символ *, там выводим списком (множеством)
+print(names, surname)
 
