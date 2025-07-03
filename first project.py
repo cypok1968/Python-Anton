@@ -1,3 +1,91 @@
+# Черепашья графика в Python grafic
+import  turtle as t # - добавляем описание прг turtle
+
+N = 8
+t.speed(5) # замедление скорости воспроизведения (0 - мгновенно рисует)
+# черепашка рисует в цвете согласно введенных условий
+colors = ['red','purple','blue','green','yellow','orange']
+
+# t.bgcolor('black')
+# angle = 360 // len(colors) - 1
+#
+# for x in range(200):
+#     t.pencolor(colors[x % len(colors)]) # цвет для каждого шага свой
+#     t.width(x // 100 + 1) # толщина линии
+#     t.forward(x)
+#     t.left(angle)
+
+
+
+# t.penup() # задаем положение черепашки в любом месте граф.экрана
+#                # согласно указанным коорд
+# t.goto(100, 200)
+# t.pendown()
+
+# for _ in range(4): # черепашка рисует квадрат из центра экрана (по умолчанию
+#     t.forward(100)
+#     t.right(90)
+#
+#
+# for _ in range(4): # черепашка рисует треугольник
+#     t.forward(120)
+#     t.right(90)
+
+
+
+
+# for _ in range(N): # черепашка рисует N кругов с центром в заданной области (положение черепашки)
+#     t.circle(50)
+#     t.right(360 // N)
+#
+# for _ in range(N): # черепашка рисует N-угольник
+#     t.forward(100)
+#     t.right(360 // N)
+
+# for _ in range(N):
+#     for _ in range(4): # черепашка рисует N-угольник
+#                       # указанное количество раз со смещением
+#         t.forward(100)
+#         t.forward(90)
+#     t.right(360 // 5)
+
+# def square(side):
+#     for _ in range(4):
+#         t.forward(side)
+#         t.right(90)
+#
+#
+# def flower():
+#     for _ in range(36):
+#         t.circle(50)
+#         t.right(10)
+
+# for _ in range(N):
+#     flower()
+
+def tree(lenght):
+    if lenght < 10:
+        return
+    t.forward(lenght)
+    t.left(30)
+    t.forward(lenght)
+    t.right(60)
+    tree(lenght * 0.7)
+    t.left(30)
+    t.backward(lenght)
+
+t.left(90)
+tree(100)
+
+
+
+
+
+
+t.mainloop()
+
+
+
 # Рекурсия - функция вызывает сама себя
 # прописываем обязательно условие выхода из рекурсии!
 # если можно обойтись без рекурсии, то её не используем!
