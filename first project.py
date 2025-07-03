@@ -1,7 +1,7 @@
 # Анонимные функции (однострочники, безымянные)
 # lambda-функции
 # lambda <аргументы>:<выражение>
-# словарные выражения
+# ключ сортировки sorted - превращает в отсортированный список (можно также через .sort)
 
 # numbers = [1, 2, 3, 4, 5] # или list(range(1, 6))
 # squares = {n: n ** 2 for n in numbers}
@@ -20,9 +20,21 @@
 # dest_dict = {k: v * 2 for k, v in source_dict.items()}
 # print(dest_dict)
 
-fruits = ['арбуз', 'ананас', 'банан', 'малина', 'ежевика']
+# fruits = ['арбуз', 'ананас', 'ежевика', 'арбуз', 'малина']
+#
+# print(sorted(fruits, key=lambda s: (len(s), s[-1]))) # сначала сортировка по длине слов, затем по последней букве
 
-print(sorted(fruits, key=lambda ch: len(ch))) # ключ сортировки key - критерий по которому будет сортировка
+goods = [
+    ['Утюг', 1500, 2],
+    ['Фен', 1000, 5],
+    ['Телевизор', 8000, 3]
+]
+
+# print(sorted(goods)) # по умолчанию сортировка по первому символу строки (по алфавиту) в списках
+# print(sorted(goods, key=lambda s: s[1])) # сортировка по возрастанию второго элемента (числа) в списках
+print(sorted(goods, key=lambda s: (s[1], s[2], s[0]))) # последовательная сортировка по 3 ключам сортировки
+
+#print(sorted(fruits, key=lambda ch: len(ch))) # ключ сортировки key - критерий по которому будет сортировка
 
 # fruits.sort()
 # print(fruits)
@@ -37,33 +49,33 @@ print(sorted(fruits, key=lambda ch: len(ch))) # ключ сортировки ke
 
 # text = 'Однажды, теперь и потом.'.lower()
 
-txt = ['', '']
-
-def remove_punctuation(text):
-    return ''.join(filter(lambda x: x in ABC ^ {' '}, text)) # убираем знаки из текста
-
-
-def get_word(text: str) -> list:
-    return remove_punctuation(text).split() # вывод текста в виде списка
-
-
-def long_words(text, length=4) -> list:
-    return filter(lambda word: len(word) >= length, get_word(text))
-
-words = get_word(txt.lower())
-
-Считаем частоту слов:
-for word in words:
-    if word in words:
-        if word in d:
-            d[word] += 1
-        else:
-            d[word] = 1
-
-res = {k: v for k, v in sorted(d.item(), key=lambda item: item[1], reverse=True)}
-
-for k, v in res.items():
-    print(k, v)
+# txt = ['', '']
+#
+# def remove_punctuation(text):
+#     return ''.join(filter(lambda x: x in ABC ^ {' '}, text)) # убираем знаки из текста
+#
+#
+# def get_word(text: str) -> list:
+#     return remove_punctuation(text).split() # вывод текста в виде списка
+#
+#
+# def long_words(text, length=4) -> list:
+#     return filter(lambda word: len(word) >= length, get_word(text))
+#
+# words = get_word(txt.lower())
+#
+# Считаем частоту слов:
+# for word in words:
+#     if word in words:
+#         if word in d:
+#             d[word] += 1
+#         else:
+#             d[word] = 1
+#
+# res = {k: v for k, v in sorted(d.item(), key=lambda item: item[1], reverse=True)}
+#
+# for k, v in res.items():
+#     print(k, v)
 
 # print(long_words(text))
 # text = ''.join(filter(lambda x: x in ABC ^ {' '}, text))
