@@ -3,23 +3,29 @@
 # lambda <аргументы>:<выражение>
 # словарные выражения
 
-numbers = [1, 2, 3, 4, 5] # или list(range(1, 6))
-squares = {n: n ** 2 for n in numbers}
-print(squares)
+# numbers = [1, 2, 3, 4, 5] # или list(range(1, 6))
+# squares = {n: n ** 2 for n in numbers}
+# print(squares)
+#
+# numbers = range (1, 11) - можно перенести внутрь словарного выражения для краткости записи
+# squares = {n: n ** 2 for n in range (1, 10) if n % 2 == 0}
+# print(squares)
+#
+# source_dict = {
+#     'x': 1,
+#     'y': 2,
+#     'z': 3,
+# }
+#
+# dest_dict = {k: v * 2 for k, v in source_dict.items()}
+# print(dest_dict)
 
-numbers = range (1, 11) - можно перенести внутрь словарного выражения для краткости записи
-squares = {n: n ** 2 for n in range (1, 10) if n % 2 == 0}
-print(squares)
+fruits = ['арбуз', 'ананас', 'банан', 'малина', 'ежевика']
 
-source_dict = {
-    'x': 1,
-    'y': 2,
-    'z': 3,
-}
+print(sorted(fruits, key=lambda ch: len(ch))) # ключ сортировки key - критерий по которому будет сортировка
 
-dest_dict = {k: v * 2 for k, v in source_dict.items()}
-print(dest_dict)
-
+# fruits.sort()
+# print(fruits)
 
 # ENGLISH_ABC = [chr(ch) for ch in range(ord('a'), ord('z') + 1)]
 # RUSSIAN_ABC = [chr(ch) for ch in range(ord('а'), ord('я') + 1)] + ['ё']
@@ -28,20 +34,37 @@ print(dest_dict)
 # print(ENGLISH_ABC)
 # print(RUSSIAN_ABC)
 
+
 # text = 'Однажды, теперь и потом.'.lower()
-#
-# def remove_punctuation(text):
-#     return ''.join(filter(lambda x: x in ABC ^ {' '}, text)) # убираем знаки из текста
-#
-#
-# def get_word(text: str) -> list:
-#     return remove_punctuation(text).split() # вывод текста в виде списка
-#
-#
-# def long_words(text, length=4) -> list:
-#     return filter(lambda word: len(word) >= length, get_word(text))
-#
-#
+
+txt = ['', '']
+
+def remove_punctuation(text):
+    return ''.join(filter(lambda x: x in ABC ^ {' '}, text)) # убираем знаки из текста
+
+
+def get_word(text: str) -> list:
+    return remove_punctuation(text).split() # вывод текста в виде списка
+
+
+def long_words(text, length=4) -> list:
+    return filter(lambda word: len(word) >= length, get_word(text))
+
+words = get_word(txt.lower())
+
+Считаем частоту слов:
+for word in words:
+    if word in words:
+        if word in d:
+            d[word] += 1
+        else:
+            d[word] = 1
+
+res = {k: v for k, v in sorted(d.item(), key=lambda item: item[1], reverse=True)}
+
+for k, v in res.items():
+    print(k, v)
+
 # print(long_words(text))
 # text = ''.join(filter(lambda x: x in ABC ^ {' '}, text))
 # print(text)
@@ -58,7 +81,7 @@ print(dest_dict)
 #
 #     return  word[0] ==
 
-# fruits = ['арбуз', 'ананас', 'банан', 'малина', 'ежевика']
+#fruits = ['арбуз', 'ананас', 'банан', 'малина', 'ежевика']
 #
 # res = list(filter(lambda x: x[0] == 'a', fruits))
 # print(res)
