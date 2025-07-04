@@ -1,3 +1,6 @@
+# ДЗ 600*400 голубой прямоугольник в правом верхнем углу солнце (четверть)
+# по центру надпись увеличенным шрифтом "СОЛНЕЧНЫЙ ДЕНЬ"
+
 # Встроенные библиотеки (надо иметь ввиду, что в новой версии Python
 # могут не сохраняться не переписываться старые библиотеки)
 # заходим в хранилище библиотек (репозиторий) Python в инете на сайте
@@ -13,22 +16,55 @@
 # RGB - растровое изображение (цвета пикселя)
 # thumbnail "большой палец"
 
-from PIL import Image # - объект Image из PIL отвечает за информацию об изображении, копирование,
-                      # создание таблицы пикселей,
+#from PIL import Image # - объект Image из PIL отвечает за информацию об изображении, копирование,
+from PIL import Image, ImageDraw
+
+RED = (255, 0, 0)
+POLY = [(100, 50), (150, 50), (180, 120)]
+
+# создание таблицы пикселей,
+
+image = Image.new('RGB',
+                  (600, 400),
+                  (0, 0, 255)) # создаем одноцветный прямоугольник с заданными параметрами
+
+draw = ImageDraw.Draw(image) # создаем прозрачный холст на котором будем рисовать
+
+
+draw.line((0, 0, 600, 400),
+          fill=RED, width=5)
+draw.line((0, 0, 600, 400),
+          fill=RED, width=5)
+draw.rectangle((10, 10, 590, 390),
+               outline=RED, width=10)
+
+draw.ellipse((10, 10, 590, 390),
+             outline=RED, width=10)
+
+draw.polygon(POLY, outline='green', width=15)
+draw.text((100, 100), 'Текст', fill=RED)
+
+
+
+
+
+
+
+image.save('images/blue.jpg')
 
 
 # изменение изображения
 
-image = Image.open('images/python.jpg')
-print(image.size)
-
-x, y = image.size
-mode = image.mode
-
-pixels = image.load() # загрузить таблицу пикселей (чистый массив пикселей) объект получил доступ ко всему в изображении
-
-print(f'Ширина = {x},высота = {y}')
-print(f'Цветовая схема = {mode}')
+# image = Image.open('images/python.jpg')
+# print(image.size)
+#
+# x, y = image.size
+# mode = image.mode
+#
+# pixels = image.load() # загрузить таблицу пикселей (чистый массив пикселей) объект получил доступ ко всему в изображении
+#
+# print(f'Ширина = {x},высота = {y}')
+# print(f'Цветовая схема = {mode}')
 
 #image_rotate = image.rotate(90) # поворот на 90 град
 # image_flip = image.transpose(Image.Transpose.FLIP_LEFT_RIGHT) # смотрит в другую сторону
