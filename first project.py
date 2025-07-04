@@ -3,18 +3,76 @@
 # заходим в хранилище библиотек (репозиторий) Python в инете на сайте
 # PyPI - Python Package Index (pypi.org)
 # from pprint import pprint
-# PIL - Python Imagine Library (для вызова библиотеки: в командной строке pip install pillow)
+# PIL - Python Imagine Library, векторное изображение
+# (пакет для установки доп.библиотек: в командной строке pip install pillow))
+# для удаления доп.библиотек: в командной строке pip uninstall pillow
+# python3 -m (только для Линокс) pip install --upgrade pip - обновление установщика библиотек для инсталяции
+# python3 -m (только для Линокс) pip install --upgrade pillow
+# pip freeze > requirements.txt - создание файла зависимости (замораживаем список библиотеки)
+# pip install -r requirements.txt - установка списка библиотек
+# RGB - растровое изображение (цвета пикселя)
+# thumbnail "большой палец"
 
-import pprint
+from PIL import Image # - объект Image из PIL отвечает за информацию об изображении, копирование,
+                      # создание таблицы пикселей,
 
-matrix = [
-    [1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 9],
-]
+
+# изменение изображения
+
+image = Image.open('images/python.jpg')
+print(image.size)
+
+x, y = image.size
+mode = image.mode
+
+pixels = image.load() # загрузить таблицу пикселей (чистый массив пикселей) объект получил доступ ко всему в изображении
+
+print(f'Ширина = {x},высота = {y}')
+print(f'Цветовая схема = {mode}')
+
+#image_rotate = image.rotate(90) # поворот на 90 град
+# image_flip = image.transpose(Image.Transpose.FLIP_LEFT_RIGHT) # смотрит в другую сторону
+# cropped = image.crop((250, 0, 550, 300))
+# resized = image.resize((400, 300))
+
+
+# Негатив
+# for i in range(x):
+#     for j in range(y):
+#         r, g, b = pixels[i, j]
+#         pixels[i, j] = 255-r, 255-g, 255-b
+
+# Grayscale
+# for i in range(x):
+#     for j in range(y):
+#         r, g, b = pixels[i, j]
+#         average = (r + g + b) // 3
+#         pixels[i, j] = average, average, average
+
+# Инверсия перестановкой основных цветов в схеме
+# for i in range(x):
+#     for j in range(y):
+#         r, g, b = pixels[i, j]
+#         pixels[i, j] = g, b, r
+
+
+#image.save('images/python2.jpg') # сохраняем все текущие изменения файла в новое изображение (*2.*)
+# image.rotate.save('images/python2.jpg')
+# image.transpose.save('images/python2.jpg')
+# image.cropped.save('images/python2.jpg')
+
+#image.save('images/python2.jpg')
+
+#import pprint
+
+# matrix = [
+#     [1, 2, 3],
+#     [4, 5, 6],
+#     [7, 8, 9],
+# ]
 
 # print(matrix)
-pprint.pprint(matrix)
+# pprint.pprint(matrix)
 # Модуль datetime: берёт данные по времени из системных часов компьютера
 #
 # import datetime as dt
