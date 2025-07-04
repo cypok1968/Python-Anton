@@ -3,32 +3,61 @@
 # заходим в хранилище библиотек (репозиторий) Python в инете на сайте
 # PyPI - Python Package Index (pypi.org)
 
-import random as r
-r.seed()
-print(r.random()) # получение случайного значения числа
+# Модуль datetime: берёт данные по времени из системных часов компьютера
 
-# программа генерации случайного пароля из подстрок 3-х строк
-N = 8
+import datetime as dt
 
-abc = 'qwertyuiopasdfghjklzxcvbnm'
-num = '1234567890'
-spec = '@#$&'
-abc = list(abc)
-num = list(num)
-spec = list(spec)
+my_time = dt.time (15, 27, 32) # вывод времени моего часового пояса
+print(my_time)
+my_day = dt.date(2025, 7, 3) # вывод даты моего часового пояса
+print(my_day)
+my_day_time = dt.datetime.combine(my_day, my_time) # вывод полного формата времени часового пояса
+print(my_day_time)
 
-r.shuffle(abc)
-
-temp = abc[:N - 3]
-temp.append(r.choice(abc).upper())
-temp.append(r.choice(num))
-temp.append(r.choice(spec))
-r.shuffle(temp)
-res = ''.join(temp)
-
-print(res)
+date1 = dt.date(2025, 6, 15)
+date2 = dt.date(2025, 7, 15)
+delta = date2 - date1 # считаем число дней между датами (сколько дней в командировке)
+print(delta)
 
 
+time = dt.datetime.now()
+
+ftime = time.strftime('%d-%m-%Y') # создаем строку форматированного времени для даты
+                                  # задаём порядок следования позиций, разделитель "-"
+print('Сегодня: ', ftime)
+
+ftime = time.strftime('%H:%M') # создаем строку форматированного времени для часов и минут
+                               # задаём порядок следования позиций, разделитель ":"
+print('Время: ', ftime)
+
+# print(dt.datetime.now()) # вывод полного формата времени, вплоть до 6 знаков после , для сек
+# print(dt.datetime.now().date()) # вывод только даты
+# print(dt.datetime.now().time()) # вывод времени
+
+# import random as r
+# r.seed()
+# print(r.random()) # получение случайного значения числа
+#
+# # программа генерации случайного пароля из подстрок 3-х строк
+# N = 8
+#
+# abc = 'qwertyuiopasdfghjklzxcvbnm'
+# num = '1234567890'
+# spec = '@#$&'
+# abc = list(abc)
+# num = list(num)
+# spec = list(spec)
+#
+# r.shuffle(abc)
+#
+# temp = abc[:N - 3]
+# temp.append(r.choice(abc).upper())
+# temp.append(r.choice(num))
+# temp.append(r.choice(spec))
+# r.shuffle(temp)
+# res = ''.join(temp)
+#
+# print(res)
 
 
 # abc = ('qwertyuiopasdfghjklzxcvbnm')
