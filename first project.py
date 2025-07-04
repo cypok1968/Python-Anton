@@ -2,33 +2,45 @@
 # могут не сохраняться не переписываться старые библиотеки)
 # заходим в хранилище библиотек (репозиторий) Python в инете на сайте
 # PyPI - Python Package Index (pypi.org)
+# from pprint import pprint
+# PIL - Python Imagine Library (для вызова библиотеки: в командной строке pip install pillow)
 
+import pprint
+
+matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9],
+]
+
+# print(matrix)
+pprint.pprint(matrix)
 # Модуль datetime: берёт данные по времени из системных часов компьютера
-
-import datetime as dt
-
-my_time = dt.time (15, 27, 32) # вывод времени моего часового пояса
-print(my_time)
-my_day = dt.date(2025, 7, 3) # вывод даты моего часового пояса
-print(my_day)
-my_day_time = dt.datetime.combine(my_day, my_time) # вывод полного формата времени часового пояса
-print(my_day_time)
-
-date1 = dt.date(2025, 6, 15)
-date2 = dt.date(2025, 7, 15)
-delta = date2 - date1 # считаем число дней между датами (сколько дней в командировке)
-print(delta)
-
-
-time = dt.datetime.now()
-
-ftime = time.strftime('%d-%m-%Y') # создаем строку форматированного времени для даты
-                                  # задаём порядок следования позиций, разделитель "-"
-print('Сегодня: ', ftime)
-
-ftime = time.strftime('%H:%M') # создаем строку форматированного времени для часов и минут
-                               # задаём порядок следования позиций, разделитель ":"
-print('Время: ', ftime)
+#
+# import datetime as dt
+#
+# my_time = dt.time (15, 27, 32) # вывод времени моего часового пояса
+# print(my_time)
+# my_day = dt.date(2025, 7, 3) # вывод даты моего часового пояса
+# print(my_day)
+# my_day_time = dt.datetime.combine(my_day, my_time) # вывод полного формата времени часового пояса
+# print(my_day_time)
+#
+# date1 = dt.date(2025, 6, 15)
+# date2 = dt.date(2025, 7, 15)
+# delta = date2 - date1 # считаем число дней между датами (сколько дней в командировке)
+# print(delta)
+#
+#
+# time = dt.datetime.now()
+#
+# ftime = time.strftime('%d-%m-%Y') # создаем строку форматированного времени для даты
+#                                   # задаём порядок следования позиций, разделитель "-"
+# print('Сегодня: ', ftime)
+#
+# ftime = time.strftime('%H:%M') # создаем строку форматированного времени для часов и минут
+#                                # задаём порядок следования позиций, разделитель ":"
+# print('Время: ', ftime)
 
 # print(dt.datetime.now()) # вывод полного формата времени, вплоть до 6 знаков после , для сек
 # print(dt.datetime.now().date()) # вывод только даты
