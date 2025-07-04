@@ -1,15 +1,90 @@
 # Встроенные библиотеки (надо иметь ввиду, что в новой версии Python
 # могут не сохраняться не переписываться старые библиотеки)
-# заходим в хранилище библиотек (репозиторий) Python в инете на сайт
+# заходим в хранилище библиотек (репозиторий) Python в инете на сайте
 # PyPI - Python Package Index (pypi.org)
 
+import random as r
+r.seed()
+print(r.random()) # получение случайного значения числа
 
-from math import pi, sqrt, sin, radians, hypot
+# программа генерации случайного пароля из подстрок 3-х строк
+N = 8
+
+abc = 'qwertyuiopasdfghjklzxcvbnm'
+num = '1234567890'
+spec = '@#$&'
+abc = list(abc)
+num = list(num)
+spec = list(spec)
+
+r.shuffle(abc)
+
+temp = abc[:N - 3]
+temp.append(r.choice(abc).upper())
+temp.append(r.choice(num))
+temp.append(r.choice(spec))
+r.shuffle(temp)
+res = ''.join(temp)
+
+print(res)
+
+
+
+
+# abc = ('qwertyuiopasdfghjklzxcvbnm')
+# lst = list(abc) + ['1', '2'] + ['#', 'S'] # перевод строки в список и добавление элементов в список
+# r.shuffle(lst) # выбор случайной последовательности всех элементов нового списка
+# res = ''.join(lst[:8]) # вывод на экран первых 8 элементов последовательности
+#
+# print(res)
+
+
+# lst = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+#
+# for _ in range(10):
+#     print(r.sample(lst, k=5)) # цикл выборки (10 шагов) любых пяти элементов списка, без повторов
+
+# res = r.sample(lst, k=5) # выборка случайных пяти элементов списка
+# print(res)
+
+# zara = ['\u2680', '\u2681', '\u2682', '\u2683', '\u2684', '\u2685']
+#
+# for _ in range(10):
+#     print(r.choice(zara), r.choice(zara)) # иммитация бросания игральных "костей"
+#     # бросаем (циклом) в 10 раз
+
+# d = {
+#     'а': 1,
+#     'b': 2,
+#     'c': 3,
+# }
+#
+# keys = list(d.keys())
+#
+# key = r.choice(keys) # выбор случайного индекса (элемента) из словаря d
+# print(d[key])
+
+# lst = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+# res = r.choice(lst) # выбор из списка случайного элемента
+# print(res)
+
+#print(r.choice(['орёл', 'решка'])) # орёл или решка (случайный выбор)
+# print(r.choice('орёл')) # выбор случайной буквы из строки орёл
+
+# num = r.randint(0, 10) # выбирает случайное значение числа от 0 до 10
+# print(num)
+
+# for _ in range(10):
+#     #print(r.randint(0, 10))
+#     print(r.randrange(0, 10, 2)) # выбирает случайное значение числа от 0 до 10 (шаг 2)
 
 # import math as m
 #
 # print(dir(m)) # вывод на экран всех функций библиотеки math Python
 # print(help(m.cos))
+
+#from math import pi, sqrt, sin, radians, hypot
 
 # 3-й способ подключения функции из библиотеки (не для всего множества элементов библиотеки)
 #from math import * # сначала загружаем в оперативную память все имена функций, а далее смотрим,
@@ -18,10 +93,10 @@ from math import pi, sqrt, sin, radians, hypot
 # from math import sqrt # достаем через (модуль библиотек PyPI) math только функцию квадратного корня
 
 
-print('Число Пи', pi)
-print('Квадратный корень 4', sqrt(4))
-print('Синус 30:', round(sin(radians(30)), 2)) # округляем значение функции до 2 знаков (для краткости)
-print('Гипотенуза для 3 и 2', hypot(3, 2))
+# print('Число Пи', pi)
+# print('Квадратный корень 4', sqrt(4))
+# print('Синус 30:', round(sin(radians(30)), 2)) # округляем значение функции до 2 знаков (для краткости)
+# print('Гипотенуза для 3 и 2', hypot(3, 2))
 
 # 2-й способ подключения функции из библиотеки, m - используем для краткости записей
 # import math as m
