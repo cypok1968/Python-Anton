@@ -1600,40 +1600,35 @@ print(calc(1,2,3, operator='*'))
 # RGB - растровое изображение (цвета пикселя)
 # thumbnail "большой палец"
 
-#from PIL import Image # - объект Image из PIL отвечает за информацию об изображении, копирование,
-# from PIL import Image, ImageDraw
-#
+# from PIL import Image # - объект Image из PIL отвечает за информацию об изображении, копирование
+                      # измененного (размещенного ранее в директорию images) изображения
+# from PIL import Image, ImageDraw # функция Image, ImageDraw из PIL отвечает за рисование нового изображения
+# #
 # RED = (255, 0, 0)
 # POLY = [(100, 50), (150, 50), (180, 120)]
-#
-# # создание таблицы пикселей,
-#
+# #
+# # # создание таблицы пикселей,
+# #
 # image = Image.new('RGB',
 #                   (600, 400),
 #                   (0, 0, 255)) # создаем одноцветный прямоугольник с заданными параметрами
-#
+# 
 # draw = ImageDraw.Draw(image) # создаем прозрачный холст на котором будем рисовать
-#
-#
+# 
+# 
 # draw.line((0, 0, 600, 400),
 #           fill=RED, width=5)
 # draw.line((0, 0, 600, 400),
 #           fill=RED, width=5)
 # draw.rectangle((10, 10, 590, 390),
 #                outline=RED, width=10)
-#
+# 
 # draw.ellipse((10, 10, 590, 390),
 #              outline=RED, width=10)
-#
+# 
 # draw.polygon(POLY, outline='green', width=15)
 # draw.text((100, 100), 'Текст', fill=RED)
-#
-#
-#
-#
-#
-#
-#
+# 
 # image.save('images/blue.jpg')
 
 
@@ -1650,38 +1645,38 @@ print(calc(1,2,3, operator='*'))
 # print(f'Ширина = {x},высота = {y}')
 # print(f'Цветовая схема = {mode}')
 
-#image_rotate = image.rotate(90) # поворот на 90 град
+# image_rotate = image.rotate(90) # поворот на 90 град
 # image_flip = image.transpose(Image.Transpose.FLIP_LEFT_RIGHT) # смотрит в другую сторону
-# cropped = image.crop((250, 0, 550, 300))
-# resized = image.resize((400, 300))
+# image_cropped = image.crop((250, 0, 550, 300))
+# image_resized = image.resize((318, 400))
 
 
-# Негатив
+# #Негатив
 # for i in range(x):
 #     for j in range(y):
 #         r, g, b = pixels[i, j]
 #         pixels[i, j] = 255-r, 255-g, 255-b
-
-# Grayscale
+#
+# #Grayscale
 # for i in range(x):
 #     for j in range(y):
 #         r, g, b = pixels[i, j]
 #         average = (r + g + b) // 3
 #         pixels[i, j] = average, average, average
 
-# Инверсия перестановкой основных цветов в схеме
+# # Инверсия перестановкой основных цветов в схеме
 # for i in range(x):
 #     for j in range(y):
 #         r, g, b = pixels[i, j]
 #         pixels[i, j] = g, b, r
 
 
-#image.save('images/python2.jpg') # сохраняем все текущие изменения файла в новое изображение (*2.*)
-# image.rotate.save('images/python2.jpg')
-# image.transpose.save('images/python2.jpg')
-# image.cropped.save('images/python2.jpg')
+# image.save('images/python2.jpg') # сохраняем все текущие изменения файла в новое изображение (*2.*)
+# image_rotate.save('images/python2.jpg')
+# image_flip.save('images/python2.jpg')
+# image_cropped.save('images/python2.jpg')
+# image_resized.save('images/python2.jpg')
 
-#image.save('images/python2.jpg')
 
 #import pprint
 
