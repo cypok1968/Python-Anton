@@ -19,9 +19,7 @@ image_flip.save('images/blue.jpg')
 image = Image.open('images/blue.jpg')
 draw = ImageDraw.Draw(image)
 
-draw.text((100, 100), 'СОЛНЕЧНЫЙ ДЕНЬ', fill=YELLOW)
-
-# fnt = ImageFont.truetype('FreeMono.ttf', 50)
-# draw.text((100, 100), 'СОЛНЕЧНЫЙ ДЕНЬ', fill=YELLOW, font=fnt)
+fnt = ImageFont.truetype('FreeMono.ttf', 50) # выбор шрифта и размера
+draw.text((100, 100), 'СОЛНЕЧНЫЙ ДЕНЬ', fill=YELLOW, font=fnt)
 
 image.save('images/blue&sun&text.jpg')
