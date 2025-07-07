@@ -10,37 +10,59 @@
 # RGB - растровое изображение (цвета пикселя)
 # thumbnail "большой палец"
 
-# Запись данных в существующий файл
-from openpyxl import  load_workbook # импортируем модуль для записи в файл .xlsx
-# Открываем (загружаем) рабочую книгу
-wb = load_workbook('docs/report.xlsx')
+# Работа с формулами:
+# ...
+# ws['A1'] = "=SUM(A1:A10)" - работа с формулами
+# Формат:
+from openpyxl.styles import  Font, Alignment
+# Чтение данных
+from openpyxl import  load_workbook # импортируем модуль для чтения .xlsx
 
-# Активный лист
+wb = load_workbook('docs/newtable.xlsx')
 ws = wb.active
-#ws = wb['Отчёт'] # можно присвоить переменному операнду имя
+ws['A1'].font = Font(bold=True, size=14) # форматирование данных в таблице
+ws['A1'].alignment = Alignment(horizontal="center")
 
-# Создаём Заголовки
-ws['A1'] = 'ФИО'
-ws['B1'] = 'Должность'
-ws['C1'] = 'Отдел'
+row_count = ws.max_row # выводим число заполненных строк
 
-# создаём Данные
-employees = [
-    ['Иванов И.И.', 'Менеджер', 'Продажи'],
-    ['Петров П.П.', 'Бухгалтер', 'Финансы'],
-    ['Сидоров С.С.', 'Аналитик', 'IT']
-]
+for row in ws.iter_rows(values_only=True):
+    fio, pos, dept = row
+    print(f'Фамилия: {fio}, Должность: {pos}, Отдел: {dept}') # более удобный формат вывода
+    # print(row)
 
-for row, data in enumerate(employees, start=2):
-    ws.cell(row=row, column=1, value=data[0])
-    ws.cell(row=row, column=2, value=data[1])
-    ws.cell(row=row, column=3, value=data[2])
+# Запись данных в существующий файл
 
-# Способы записи
-# ws['F1'] = 'Привет мир' # первый вариант записи (в ячейку с адресом F1)
-# ws.cell(1, 3, 'Hello') # второй вариант записи (по номеру строки и столбца ячейки)
+from openpyxl import  load_workbook # импортируем модуль для записи в файл .xlsx
 
-wb.save('docs/newtable.xlsx')
+# # Открываем (загружаем) рабочую книгу
+# wb = load_workbook('docs/report.xlsx')
+#
+# # Активный лист
+# ws = wb.active
+# #ws = wb['Отчёт'] # можно присвоить переменному операнду имя
+#
+# # Создаём Заголовки
+# ws['A1'] = 'ФИО'
+# ws['B1'] = 'Должность'
+# ws['C1'] = 'Отдел'
+#
+# # создаём Данные
+# employees = [
+#     ['Иванов И.И.', 'Менеджер', 'Продажи'],
+#     ['Петров П.П.', 'Бухгалтер', 'Финансы'],
+#     ['Сидоров С.С.', 'Аналитик', 'IT']
+# ]
+#
+# for row, data in enumerate(employees, start=2):
+#     ws.cell(row=row, column=1, value=data[0])
+#     ws.cell(row=row, column=2, value=data[1])
+#     ws.cell(row=row, column=3, value=data[2])
+#
+# # Способы записи
+# # ws['F1'] = 'Привет мир' # первый вариант записи (в ячейку с адресом F1)
+# # ws.cell(1, 3, 'Hello') # второй вариант записи (по номеру строки и столбца ячейки)
+#
+# wb.save('docs/newtable.xlsx')
 
 # # Пустой файл Exel
 # from  openpyxl import Workbook
