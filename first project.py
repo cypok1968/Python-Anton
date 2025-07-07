@@ -1,21 +1,83 @@
-# Встроенные библиотеки (надо иметь ввиду, что в новой версии Python
-# могут не сохраняться не переписываться старые библиотеки)
-# заходим в хранилище библиотек (репозиторий) Python в инете на сайте
-# PyPI - Python Package Index (pypi.org)
-# from pprint import pprint
-# PIL - Python Imagine Library, векторное изображение
-# (пакет для установки доп.библиотек: в командной строке pip install pillow))
-# для удаления доп.библиотек: в командной строке pip uninstall pillow
-# python3 -m (только для Линокс) pip install --upgrade pip - обновление установщика библиотек для инсталяции
-# python3 -m (только для Линокс) pip install --upgrade pillow
+# Внешние библиотеки
+# Документы по шаблону (из методичек https://disk.yandex.ru/d/9HNsXg77_qeidg
+# скачать файл template.docx)
+# установка шаблона template.docx (pip install docxtpl)
+# установка библиотеки Excel (pip install openpyxl)
+# Word - DOCX (pip install python-docx)
+# Word - DOCX (pip install docxtpl)
 # pip freeze > requirements.txt - создание файла зависимости (замораживаем список библиотеки)
 # pip install -r requirements.txt - установка списка библиотек
 # RGB - растровое изображение (цвета пикселя)
 # thumbnail "большой палец"
 
-from PIL import Image, ImageFilter, ImageEnhance, ImageFont, ImageDraw
 
-orig = Image.open('images/python.jpg').convert('RGB') # на всякий случай конвертируем в формат RGB
+
+
+from docxtpl import DocxTemplate # извлекаем модуль для загрузки шаблона документа
+
+from main import count
+
+# Загрузка шаблона
+doc = DocxTemplate('docs/template.docx')
+
+# Данные для подстановки в шаблон
+content = {
+    'company': 'ООО "Монолит"',
+    'employee': 'Петров Д.И.',
+    'position': 'Менеджер',
+    'date': '01/01/2025'
+}
+
+count = 1
+for item in content:
+    doc.render(item)
+    doc.save(f' {}')
+
+
+doc.render(content) # шаблон для формирования отчётов
+doc.save('docx/about.docx')
+
+# from docx import Document
+# from docx.enum.text import WD_PARAGRAPH_ALIGNMENT, WD_ALIGN_PARAGRAPH
+# from docx.shared import Cm, Inches, Mm, Pt # Для размеров
+#
+# doc = Document() # создание экземпляра документа
+#
+# # Добавление заголовка
+# doc.add_heading('Отчёт за месяц', 1)
+# paragraph = doc.add_paragraph() # создаем с нового абзаца (как клавиша "ввод")
+# paragraph = doc.add_paragraph('В этом отчёте представлены')
+# # add_run прием: внедряет что-то в созданный абзац (может быть не только текст, но и картинка)
+# paragraph.add_run(' ключевые показатели').bold = True
+# # Новый абзац для списка
+# paragraph = doc.add_paragraph()
+# paragraph_format = paragraph.paragraph_format # форматирование параграфа
+# paragraph_format.alignment = WD_ALIGN_PARAGRAPH.LEFT
+# #
+# paragraph = doc.add_paragraph('Первый пункт', 'List Bullet')
+# paragraph = doc.add_paragraph('Второй пункт', 'List Bullet')
+# #
+# paragraph = doc.add_paragraph('Первый пункт', 'List Number')
+# paragraph = doc.add_paragraph('Второй пункт', 'List Number')
+#
+# paragraph = doc.add_paragraph()
+#
+# table = doc.add_table(3, cols=3)
+#
+# for i, row in enumerate(table.rows):
+#     for j, cell in enumerate(table.cells):
+#         cell.txt = f'Строка {i+1}, Столбец {j+1}'
+#
+# doc.add_paragraph()
+#
+# doc.add_picture('image/blue.jpg', width=Mm(10))
+
+
+# doc.save('docs/report.docx')
+
+# from PIL import Image, ImageFilter, ImageEnhance, ImageFont, ImageDraw
+#
+# orig = Image.open('images/python.jpg').convert('RGB') # на всякий случай конвертируем в формат RGB
 # размытие
 # blue_image = orig.filter(ImageFilter.GaussianBlur(radius=8))
 # blue_image.show()
@@ -26,58 +88,4 @@ orig = Image.open('images/python.jpg').convert('RGB') # на всякий слу
 # sharpened_image.show()
 
 
-# orig = Image.open('images/sunny_day.jpg').convert('RGB')
-#
-# up = orig.crop((0, 0, 600, 200))
-# down = orig.crop((0, 200, 600, 400))
-#
-# new = Image.new('RGB', (600, 400))
-#
-# new.paste(down, )
-# new.paste(down, )
-# show()
 
-
-
-# ДЗ 600*400 голубой прямоугольник в правом верхнем углу солнце (четверть)
-# по центру надпись увеличенным шрифтом "СОЛНЕЧНЫЙ ДЕНЬ"
-
-# 1 вариант (мой, выдает ошибку
-# from PIL import Image, ImageFont, ImageDraw  # функция Image, ImageDraw из PIL отвечает за рисование нового изображения
-#
-# YELLOW = (255, 255, 0)
-#
-# image = Image.new('RGB',
-#                   (600, 400),
-#                   (0, 0, 255)) # создаем одноцветный прямоугольник с заданными параметрами
-#
-# draw = ImageDraw.Draw(image) # создаем объект для рисования (прозрачный холст, на котором будем рисовать)
-#
-# draw.ellipse((-100, -100, 100, 100), 'YELLOW', 'YELLOW', 1)
-#
-# image_flip = image.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
-# image_flip.save('images/blue.jpg')
-#
-# image = Image.open('images/blue.jpg')
-# draw = ImageDraw.Draw(image)
-#
-# draw.text((100, 100), 'СОЛНЕЧНЫЙ ДЕНЬ', fill=YELLOW) # без выбора шрифта и размера
-# # fnt = ImageFont.truetype('FreeMono.ttf', 50) # выбор шрифта и размера
-# # draw.text((100, 100), 'СОЛНЕЧНЫЙ ДЕНЬ', fill=YELLOW, font=fnt)
-#
-# image.save('images/blue&sun&text.jpg')
-
-# 2 вариант
-
-
-# https://fontsforyou.com/ru/specific-fonts/ttf-
-
-# W = 600
-# H = 400
-#
-# image
-
-# расчитываем позицию для центрирования
-
-
-# image save (
