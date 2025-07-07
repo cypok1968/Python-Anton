@@ -1,27 +1,27 @@
 # ДЗ 600*400 голубой прямоугольник в правом верхнем углу солнце (четверть)
 # по центру надпись увеличенным шрифтом "СОЛНЕЧНЫЙ ДЕНЬ"
 
-# from PIL import Image, ImageFont, ImageDraw
+from PIL import Image, ImageFont, ImageDraw
 
 # Мои варианты
 
-# YELLOW = (255, 255, 0)
+YELLOW = (255, 255, 0)
 
-# image = Image.new('RGB',
-#                   (600, 400),
-#                   (0, 163, 232))
+image = Image.new('RGB',
+                  (600, 400),
+                  (0, 163, 232))
 
-# draw = ImageDraw.Draw(image)
+draw = ImageDraw.Draw(image)
 
-# draw.circle((600, 0), 70, 'YELLOW', 'YELLOW', 1)
+draw.circle((600, 0), 70, 'YELLOW', 'YELLOW', 1)
 
-# image_flip = image.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
-# image_flip.save('images/blue.jpg')
 #  0-вой вариант без изменения высоты стандартного шрифта
 # draw.text((100, 100), 'СОЛНЕЧНЫЙ ДЕНЬ', fill=YELLOW)
+
 # 1-й вариант
 # fnt = ImageFont.truetype(font='arial.ttf', size=50) # для встроенного шрифта  arial.ttf
-# 2-й вариант
+
+# 2-й вариант с загрузкой шрифтов в fonts/...
 font = ImageFont.truetype(font='fonts/ofont.ru_Propaniac.ttf', size=45) # для загруженного шрифта ofont.ru_Propaniacl.ttf
 draw.text((180, 170), 'СОЛНЕЧНЫЙ ДЕНЬ', fill=YELLOW, font=font)
 
