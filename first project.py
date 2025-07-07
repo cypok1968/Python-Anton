@@ -7,6 +7,7 @@
 # a - append (добавление записи в конец файла, сам файл не стирается)
 # r - read (чтение: по умолчанию)
 # print(*args, sep'', end='\n', file=None, flush=False) аргументы для печати
+# os - модуль для работы с директориями и их файлами
 
 import os
 
@@ -19,12 +20,18 @@ if os.path.exists ('libs'): # проверка существования пут
 path = os.getcwd() # получаем текущую рабочую директорию
 print(path)
 
-os.chdir((path + '/images')) # нырнули в /images
-print(os.getcwd())
+os.chdir((path + '/images')) # определяем как текущую директорию /images
 
-os.chdir('..') # на уровень выше (нырнули в /fonts)
-os.chdir((path + '/fonts'))
-print(os.getcwd())
+all_files = [f for f in os.listdir('.')] # возвращает текущую директорию в виде списка все файлы
+#all_files = [f for f in os.listdir('.') if f.startswith('py')] # # возвращает по условию начала имени файла
 
-print()
+print(all_files)
+
+# print(os.getcwd())
+#
+# os.chdir('..') # на уровень выше (нырнули в /fonts)
+# os.chdir((path + '/fonts'))
+# print(os.getcwd())
+#
+# print()
 #os.rmdir('libs') # удаление директории
