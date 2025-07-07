@@ -1,25 +1,58 @@
 # ДЗ 600*400 голубой прямоугольник в правом верхнем углу солнце (четверть)
 # по центру надпись увеличенным шрифтом "СОЛНЕЧНЫЙ ДЕНЬ"
 
-from PIL import Image, ImageFont, ImageDraw  # функция Image, ImageDraw из PIL отвечает за рисование нового изображения
+# from PIL import Image, ImageFont, ImageDraw
 
-YELLOW = (255, 255, 0)
+# Мои варианты
 
-image = Image.new('RGB',
-                  (600, 400),
-                  (0, 0, 255)) # создаем одноцветный прямоугольник с заданными параметрами
+# YELLOW = (255, 255, 0)
 
-draw = ImageDraw.Draw(image) # создаем объект для рисования (прозрачный холст, на котором будем рисовать)
+# image = Image.new('RGB',
+#                   (600, 400),
+#                   (0, 163, 232))
 
-draw.ellipse((-100, -100, 100, 100), 'YELLOW', 'YELLOW', 1)
+# draw = ImageDraw.Draw(image)
 
-image_flip = image.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
-image_flip.save('images/blue.jpg')
+# draw.circle((600, 0), 70, 'YELLOW', 'YELLOW', 1)
 
-image = Image.open('images/blue.jpg')
-draw = ImageDraw.Draw(image)
-
-fnt = ImageFont.truetype('FreeMono.ttf', 50) # выбор шрифта и размера
-draw.text((100, 100), 'СОЛНЕЧНЫЙ ДЕНЬ', fill=YELLOW, font=fnt)
+# image_flip = image.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
+# image_flip.save('images/blue.jpg')
+#  0-вой вариант без изменения высоты стандартного шрифта
+# draw.text((100, 100), 'СОЛНЕЧНЫЙ ДЕНЬ', fill=YELLOW)
+# 1-й вариант
+# fnt = ImageFont.truetype(font='arial.ttf', size=50) # для встроенного шрифта  arial.ttf
+# 2-й вариант
+font = ImageFont.truetype(font='fonts/ofont.ru_Propaniac.ttf', size=45) # для загруженного шрифта ofont.ru_Propaniacl.ttf
+draw.text((180, 170), 'СОЛНЕЧНЫЙ ДЕНЬ', fill=YELLOW, font=font)
 
 image.save('images/blue&sun&text.jpg')
+
+# Вариант Мастера (Учителя)
+
+# H = 400
+#
+# image = Image.new('RGB',
+#                   (W, H),
+#                   (0, 163, 232))
+#
+# draw = ImageDraw.Draw(image)
+#
+# text = 'Солнечный день'
+# # draw.ellipse((470, -120, 800, 120), outline='yellow', fill='yellow')
+# draw.circle((600, 0), 100, fill='yellow')
+# font = ImageFont.truetype(
+#     # font='arial.ttf',  # можно использовать любой установленный шрифт
+#     font='fonts/Geisha.ttf',
+#     size=50
+# )
+# # Получаем размеры текста
+# _, _, w, h = draw.textbbox((0, 0), text, font=font)
+#
+# # Рассчитываем позицию для центрирования
+# x = (W - w) // 2
+# y = (H - h) // 2
+#
+# draw.text((x, y), text, fill=(255, 255, 0), font=font)
+#
+# # image.save('images/sunny_day.jpg')
+# image.show()
