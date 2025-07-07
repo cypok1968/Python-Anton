@@ -2,6 +2,7 @@
 from.module import greet # относительный упрощенный импорт из module
 from.utils import add # относительный упрощенный импорт из module
 
+
 __version__ = '1.0.0' # версия пакета package1
 __doc__ = 'Этот пакет содержит...' # документация к пакету, комментарии
 __author__ = ('John')
