@@ -6,7 +6,14 @@
 # w - write (запись: файл создаётся или если он был, то всё что в нём было стирается)
 # a - append (добавление записи в конец файла, сам файл не стирается)
 # r - read (чтение: по умолчанию)
+# print(*args, sep'', end='\n', file=None, flush=False) аргументы для печати
 
+# Открытие с менеджером контектса
+with open('info.txt', 'rt', encoding='utf-8') as fo:
+    text = fo.read()
+    lst = text.splitlines()
+    print(lst)
+ # Проследит, чтобы файл закрылся
 
 # fo = open('info.txt', 'wt', encoding='utf-8') # запись в файл
 
