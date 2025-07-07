@@ -10,32 +10,72 @@
 # RGB - растровое изображение (цвета пикселя)
 # thumbnail "большой палец"
 
+# Запись данных в существующий файл
+from openpyxl import  load_workbook # импортируем модуль для записи в файл .xlsx
+# Открываем (загружаем) рабочую книгу
+wb = load_workbook('docs/report.xlsx')
+
+# Активный лист
+ws = wb.active
+#ws = wb['Отчёт'] # можно присвоить переменному операнду имя
+
+# Создаём Заголовки
+ws['A1'] = 'ФИО'
+ws['B1'] = 'Должность'
+ws['C1'] = 'Отдел'
+
+# создаём Данные
+employees = [
+    ['Иванов И.И.', 'Менеджер', 'Продажи'],
+    ['Петров П.П.', 'Бухгалтер', 'Финансы'],
+    ['Сидоров С.С.', 'Аналитик', 'IT']
+]
+
+for row, data in enumerate(employees, start=2):
+    ws.cell(row=row, column=1, value=data[0])
+    ws.cell(row=row, column=2, value=data[1])
+    ws.cell(row=row, column=3, value=data[2])
+
+# Способы записи
+# ws['F1'] = 'Привет мир' # первый вариант записи (в ячейку с адресом F1)
+# ws.cell(1, 3, 'Hello') # второй вариант записи (по номеру строки и столбца ячейки)
+
+wb.save('docs/newtable.xlsx')
+
+# # Пустой файл Exel
+# from  openpyxl import Workbook
+#
+# wb = Workbook() # создаем конструктор
+#
+# ws = wb.active # создаем пустой документ
+# ws.title = 'Отчёт' # присваиваем имя документу
+#
+# wb.save('docs/report.xlsx')
 
 
-
-from docxtpl import DocxTemplate # извлекаем модуль для загрузки шаблона документа
-
-from main import count
-
-# Загрузка шаблона
-doc = DocxTemplate('docs/template.docx')
-
-# Данные для подстановки в шаблон
-content = {
-    'company': 'ООО "Монолит"',
-    'employee': 'Петров Д.И.',
-    'position': 'Менеджер',
-    'date': '01/01/2025'
-}
-
-count = 1
-for item in content:
-    doc.render(item)
-    doc.save(f' {}')
-
-
-doc.render(content) # шаблон для формирования отчётов
-doc.save('docx/about.docx')
+# from docxtpl import DocxTemplate # извлекаем модуль для загрузки шаблона документа
+#
+# from main import count
+#
+# # Загрузка шаблона
+# doc = DocxTemplate('docs/template.docx')
+#
+# # Данные для подстановки в шаблон
+# content = {
+#     'company': 'ООО "Монолит"',
+#     'employee': 'Петров Д.И.',
+#     'position': 'Менеджер',
+#     'date': '01/01/2025'
+# }
+#
+# count = 1
+# for item in content:
+#     doc.render(item)
+#     doc.save(f' {}')
+#
+#
+# doc.render(content) # шаблон для формирования отчётов
+# doc.save('docx/about.docx')
 
 # from docx import Document
 # from docx.enum.text import WD_PARAGRAPH_ALIGNMENT, WD_ALIGN_PARAGRAPH
