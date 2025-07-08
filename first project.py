@@ -43,3 +43,4 @@
 # result = re.findall(pattern, test_string) # ищет все повторения 4-х символов подряд в строке
 # print(result)
 
+
