@@ -7,13 +7,30 @@
 #     если исключения не было
 # finally:
 #     выполняется в любом случае
+
+#Задача 1.
+lst = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+try:
+    index = int(input('Введите индекс: '))
+    if -len(lst) < index < len(lst) -1:
+        raise ValueError('Индекс вне диапазона')
+    res = lst[index]
+    print(f'Число по индексу {index}: {lst[index]}')
+except ValueError as exp:
+    mess, val = exp.args
+    if mess[0].startswith('invalid literal'):
+        print(f'Вводить надо числа.')
+    else:
+        print(exp)
+
+
 # Утверждения (assertions) разработаны для поиска оптимального решения части программы
 # (проверка "всегда ли будет так работать")
-try:
-    text = input('Введите текст: ')
-    assert  len(text) > 3 # это утверждение
-except AssertionError:
-    print('Слишком короткий текст')
+# try:
+#     text = input('Введите текст: ')
+#     assert  len(text) > 3 # это утверждение
+# except AssertionError:
+#     print('Слишком короткий текст')
 
 # "Бросаемся" исключениями - raise
 
