@@ -7,21 +7,26 @@
 #     если исключения не было
 # finally:
 #     выполняется в любом случае
+# Утверждения (assertions) разработаны для поиска оптимального решения части программы
+# (проверка "всегда ли будет так работать")
+try:
+    text = input('Введите текст: ')
+    assert  len(text) > 3 # это утверждение
+except AssertionError:
+    print('Слишком короткий текст')
+
 # "Бросаемся" исключениями - raise
 
-
-max_val = 10
-min_val = 1
-
-try:
-    val = int(input(f'Введите целое число от {min_val} до {max_val}: '))
-    if not  min_val < val < max_val:
-        raise  ValueError('введенное число вне диапазона')
-    print(f'Введенное число {val} лежит в заданном диапазоне')
-except ValueError as exp:
-    print('Надо быть внимательнее: ', exp)
-
-
+# max_val = 10
+# min_val = 1
+#
+# try:
+#     val = int(input(f'Введите целое число от {min_val} до {max_val}: '))
+#     if not  min_val < val < max_val:
+#         raise  ValueError('введенное число вне диапазона')
+#     print(f'Введенное число {val} лежит в заданном диапазоне')
+# except ValueError as exp:
+#     print('Надо быть внимательнее: ', exp)
 
 
 # from jinja2.ext import loopcontrols
