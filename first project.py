@@ -1,23 +1,41 @@
+# Линтеры - контролирует следование хорошим практикам
+# (выявляет сразу при некорректности программной фразы), в отличие от
+# PyCharm (контролирует только при наведении на конкретную строку, в которой помечены ошибки)
+# (flake8-bugbear - для нахождения логических ошибок в коде)
+# (pep8-naming - проверяет имена на соответствие pep8)
+# pip install flake8
+# pip install flake8-bugbear pep8-naming
+# Путь C:\Users\LCIMS2\PycharmProjects\PythonProject\firstProject\.venv\Scripts\flake8.exe
+# Arguments: --max-complexity 10 $FileDir$/$FaleName$
+# Path: $FileDir$
+# Advanced Options/OutputFilter: $FILE_PATH$:$LINES$
+# для загрузки сразу:
+#C:\Users\LCIMS2\PycharmProjects\PythonProject\firstProject\.venv\Scripts\flake8.exe
+#--max-complexity 10 $FileDir$/$FileName$$FileDir$$FILE_PATH$:$LINES$
+
+
 # Библиотека pymorphy
 # pip install pymorphy3  (подключаем библиотеку)
 # pip install -U pymorphy3-dicts-ru (подключаем словарь)
 
-import pymorphy3
-from pymorphy3 import MorphAnalyzer
-
-morph = pymorphy3.MorphAnalyzer()
-
-form = MorphAnalyzer().parse('бутылка')[0]
-
-for btl in reversed(range(99)): # склоняется слово "бутылки" при переборе количества бутылок от 1 до 99)
-    print(f'В холодильнике {btl+1} {form.make_agree_with_number(btl+1).word} пива')
-    print('Возьмём одну и выпьем') # вынимаем по одной бутылке из холодильника
-                                   # (запуск цикла с правильным склонением слова "бутылки")
-    if btl % 10 == 1 and btl != 11:
-        remain = 'Осталась'
-    else:
-        remain = 'Осталось'
-    print(f'{remain}{btl}{form.make_agree_with_number(btl).word} пива.')
+# import pymorphy3
+# from pymorphy3 import MorphAnalyzer # функция морфологического склонения русского слова
+                                      # в зависимости от его количества
+#
+# morph = pymorphy3.MorphAnalyzer()
+#
+# form = MorphAnalyzer().parse('бутылка')[0] # объект морфологически правильно склоняет слово "бутылка"
+#                                            # в зависимости от количества бутылок
+#
+# for btl in reversed(range(99)): # склоняется слово "бутылки" при переборе количества бутылок от 1 до 99)
+#     print(f'В холодильнике {btl+1} {form.make_agree_with_number(btl+1).word} пива')
+#     print('Возьмём одну и выпьем') # вынимаем по одной бутылке из холодильника
+#                                    # (запуск цикла с правильным склонением слова "бутылки")
+#     if btl % 10 == 1 and btl != 11:
+#         remain = 'Осталась '
+#     else:
+#         remain = 'Осталось '
+#     print(f'{remain}{btl} {form.make_agree_with_number(btl).word} пива.')
 
 
 #print(morph.parse('пила')) # анализирует слово "пила" на предмет двоякости (существительное, глагол)
