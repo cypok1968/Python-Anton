@@ -10,18 +10,34 @@
 
 # Задача 2 выявление исключений при делении двух чисел
 
-# 1-й способ с использованием цикла if
+# 2-й способ с использованием цикла try
+
 while True:
     a = input('Введите первое число: ')
     b = input('Введите второе число: ')
+    try:
+        result = int(a) / int (b)
+    except ZeroDivisionError:
+        print('На ноль делить нельзя!!!')
+    except ValueError:
+        print('Нужно вводить числа...')
+        print(f'А введено: {a} и {b} :(')
+    else:
+        print(result)
+        break
 
-    if a.isdigit() and b.isdigit():
-        if int(b) == 0:
-            print('На ноль делить нельзя!')
-        else:
-            print(int(a) / int(b))
-            break
-    else:('Вводить надо только числа')
+# 1-й способ с использованием цикла if
+# while True:
+#     a = input('Введите первое число: ')
+#     b = input('Введите второе число: ')
+#
+#     if a.isdigit() and b.isdigit():
+#         if int(b) == 0:
+#             print('На ноль делить нельзя!')
+#         else:
+#             print(int(a) / int(b))
+#             break
+#     else:('Вводить надо только числа')
 
 # #Задача 1.
 # lst = [1, 2, 3, 4, 5, 6, 7, 8, 9]
