@@ -1,3 +1,58 @@
+# Исключения
+# try:
+#     определяемся, что будем делать с исключением
+# except:
+#     обрабатываем исключение
+# else:
+#     если исключения не было
+# finally:
+#     выполняется в любом случае
+
+
+# print(name) # выдает ошибку при выводе на печать файла, которого нет
+# fo = open('information') # выдает ошибку при открытии файла, которого нет
+
+
+# try:
+#     fo = open('information') # проверка открытия файла для получения инфо о его наличии
+# except FileNotFoundError:
+#     print('Такого файла нет')
+####################################################################################
+
+flag = False
+
+try:
+    fo = open('information', encoding='utf-8') # проверка возможности открытия файла
+except FileNotFoundError:
+    fo = open('information', 'wt', encoding='utf-8')
+    flag = True
+    print('Файл не обнаружен и создан с параметрами по умолчанию.')
+
+else:
+    print('Файл открыт успешно. Читаем его и закрываем.')
+    print(fo.read())
+    fo.close()
+finally:
+    if flag: # проверка флага
+        fo.write('По умолчанию')
+        fo.close()
+    print('Продолжаем работать.')
+
+# try:
+#     fo = open('information')
+#     print(fo.read())
+#     fo.close()
+# except FileNotFoundError: # без FileNotFoundError не использовать, т.к. слишком много исключений
+#     print('Файл не обнаружен и создан с параметрами по умолчанию.')
+#     with open('information', 'wt', encoding='utf-8') as fo:
+#         fo.write('По умолчанию')
+# else:
+#     print('Файл открыт успешно. Читаем его и закрываем.')
+#     print(fo.read())
+#     fo.close()
+# finally:
+#     print('Продолжаем работать.')
+
 # Файлы это набор данных, сохраненных на носителе инфо определённой структуры, содержащем имя и расширени
 # расширение может ни о чём не говорить, если файл другой структуры
 # name.txt (текстовые файлы, читаемые), бинарные (двоичные) в отличие текстовых не читаются (в смысле инфо)
@@ -8,10 +63,10 @@
 # r - read (чтение: по умолчанию)
 # print(*args, sep'', end='\n', file=None, flush=False) аргументы для печати
 
-from path_lib import *
-
-print(img_dir)
-print(font_dir)
+# from path_lib import *
+#
+# print(img_dir)
+# print(font_dir)
 
 # import pickle # процесс с применением т.н. "засолки"
 # import pprint
