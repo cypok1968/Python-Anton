@@ -7,7 +7,44 @@
 #     если исключения не было
 # finally:
 #     выполняется в любом случае
+from jinja2.ext import loopcontrols
 
+print('Остаток от деления:')
+
+loop = True
+
+while loop: # потоковый ввод чисел для деления 10 c выводом рез-та
+    try:
+        value = int(input('На что делим число 10:')) # возможны исключения: деление ноль,
+                                                 # деление не на целое число
+        res = 10 % value
+        print(f'Остаток от деления на {value} = {res}')
+    except ZeroDivisionError:
+        print('На ноль делить нельзя!')
+    except  ValueError:
+        print('Надо вводить только целые числа')
+    except Exception as exp:
+        print('Произошло исключение:',
+          exp.__class__.__name__,
+          exp)
+else:
+    loop = False
+
+# print('Остаток от деления:')
+#
+# try:
+#     value = int(input('На что делим число 10:')) # возможны исключения: деление ноль,
+#                                                  # деление не на целое число
+#     res = 10 % value
+#     print(f'Остаток от деления на {value} = {res}')
+# except ZeroDivisionError:
+#     print('На ноль делить нельзя!')
+# except  ValueError:
+#     print('Надо вводить только целые числа')
+# except Exception as exp:
+#     print('Произошло исключение:',
+#           exp.__class__.__name__,
+#           exp)
 
 # print(name) # выдает ошибку при выводе на печать файла, которого нет
 # fo = open('information') # выдает ошибку при открытии файла, которого нет
@@ -19,24 +56,24 @@
 #     print('Такого файла нет')
 ####################################################################################
 
-flag = False
-
-try:
-    fo = open('information', encoding='utf-8') # проверка возможности открытия файла
-except FileNotFoundError:
-    fo = open('information', 'wt', encoding='utf-8')
-    flag = True
-    print('Файл не обнаружен и создан с параметрами по умолчанию.')
-
-else:
-    print('Файл открыт успешно. Читаем его и закрываем.')
-    print(fo.read())
-    fo.close()
-finally:
-    if flag: # проверка флага
-        fo.write('По умолчанию')
-        fo.close()
-    print('Продолжаем работать.')
+# flag = False
+#
+# try:
+#     fo = open('information', encoding='utf-8') # проверка возможности открытия файла
+# except FileNotFoundError:
+#     fo = open('information', 'wt', encoding='utf-8')
+#     flag = True
+#     print('Файл не обнаружен и создан с параметрами по умолчанию.')
+#
+# else:
+#     print('Файл открыт успешно. Читаем его и закрываем.')
+#     print(fo.read())
+#     fo.close()
+# finally:
+#     if flag: # проверка флага
+#         fo.write('По умолчанию')
+#         fo.close()
+#     print('Продолжаем работать.')
 
 # try:
 #     fo = open('information')
