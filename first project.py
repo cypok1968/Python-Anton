@@ -1,11 +1,20 @@
-# ДЗ 07/07/25
-# в Модули.pdf
-# https://github.com/ipapMaster/Python_Web_2025.git - путь к учителю и его комитам на гитхаб.ком
-# https://disk.yandex.ru/d/9HNsXg77_qeidg - путь к методичкам
-# https://fontsforyou.com/ru/specific-fonts/ttf-fonts/languageru - путь к шрифтам .ttf
+# Файлы это набор данных, сохраненных на носителе инфо определённой структуры, содержащем имя и расширени
+# расширение может ни о чём не говорить, если файл другой структуры
+# name.txt (текстовые файлы, читаемые), бинарные (двоичные) в отличие текстовых не читаются (в смысле инфо)
+# t - текстовый файл (txt, html, xml)
+# b - бинарный файл (jpg, avi, mp3)
+# w - write (запись: файл создаётся или если он был, то всё что в нём было стирается)
+# a - append (добавление записи в конец файла, сам файл не стирается)
+# r - read (чтение: по умолчанию)
+# print(*args, sep'', end='\n', file=None, flush=False) аргументы для печати
 
-import pickle # процесс с применением т.н. "засолки"
-import pprint
+from path_lib import *
+
+print(img_dir)
+print(font_dir)
+
+# import pickle # процесс с применением т.н. "засолки"
+# import pprint
 
 # d = {
 #     'стол': 'table',
@@ -17,10 +26,10 @@ import pprint
 #     pickle.dump(d, p) # d - что сериализуем, p - куда сериализуем
 
 # десериализация (является небезопасной, т.к. возможно проникновение вирусов, действующих на уровне прав ОС)
-with open('dictfile.dat', 'rb'):  # открываем файл
-    d = pickle.load(p)  # загружаем файл (читаем, как p)
-
-pprint.pprint(d, width=15)
+# with open('dictfile.dat', 'rb'):  # открываем файл
+#     d = pickle.load(p)  # загружаем файл (читаем, как p)
+#
+# pprint.pprint(d, width=15)
 
 
 
