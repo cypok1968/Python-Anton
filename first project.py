@@ -1,4 +1,30 @@
-# Исключения
+# Библиотека pymorphy
+# pip install pymorphy3  (подключаем библиотеку)
+# pip install -U pymorphy3-dicts-ru (подключаем словарь)
+
+import pymorphy3
+from pymorphy3 import MorphAnalyzer
+
+morph = pymorphy3.MorphAnalyzer()
+
+form = MorphAnalyzer().parse('бутылка')[0]
+
+for btl in reversed(range(99)): # склоняется слово "бутылки" при переборе количества бутылок от 1 до 99)
+    print(f'В холодильнике {btl+1} {form.make_agree_with_number(btl+1).word} пива')
+    print('Возьмём одну и выпьем') # вынимаем по одной бутылке из холодильника
+                                   # (запуск цикла с правильным склонением слова "бутылки")
+    if btl % 10 == 1 and btl != 11:
+        remain = 'Осталась'
+    else:
+        remain = 'Осталось'
+    print(f'{remain}{btl}{form.make_agree_with_number(btl).word} пива.')
+
+
+#print(morph.parse('пила')) # анализирует слово "пила" на предмет двоякости (существительное, глагол)
+
+
+
+# Исключения (runtime - время выполнения процедуры (программы))
 # try:
 #     определяемся, что будем делать с исключением
 # except:
@@ -9,56 +35,56 @@
 #     выполняется в любом случае
 # import pickle # процесс с применением т.н. "засолки"
 
-import pickle
-
-voc = {
-    'стол': 'table',
-    'стул': 'chair'
-}
-
-# функция для распечатки словаря
-def print_voc():
-    print('Сейчас словарь содержит: ')
-    for k, v in voc.items():
-        print(k, '-', v) # Alt + 0151
-
-# загружаем словарь из файла
-try:
-    with open('dict.dat', 'rb') as dump_in:
-        voc = pickle.load(dump_in)
-except FileNotFoundError:
-    with open('dict.dat', 'wb') as dump_out:
-        pickle.dump(voc, dump_out)
-    print('Создан минимальный словарь: ')
-    print_voc()
-
-while True:
-    temp = input('\nВведите слово для перевода или "#" для завершения: ')
-    word = temp.strip().lower()
-    if word == '#' or word == '№':
-        break
-    if word in voc.keys():
-        translate = voc[word]
-        print(f'Слово "{word}" переводится как {translate}.\n')
-    else:
-        print(f'Значение слова {word} отсутсвует в словаре.')
-        newkey = f'А как слово {word} переводится?'
-        newkey += 'Если ничего не вводите нажмите ENTER, \n'
-        newkey  += 'или введите его здесь: '
-        new_word = input(newkey)
-
-        if new_word != '' or len(new_word) > 2:
-            voc[word] = new_word
-            print(f'Слово {word} с переводом {new_word} внесено в словарь.')
-        else:
-            print('Ничего не введено или слишком короткое слово.')
-            continue
-
-# Необходимо сохранить новый словарь
-with open('dict.dat', 'wb') as dump_out:
-    pickle.dump(voc, dump_out)
-
-print('До новых встреч!!!')
+# import pickle
+#
+# voc = {
+#     'стол': 'table',
+#     'стул': 'chair'
+# }
+#
+# # функция для распечатки словаря
+# def print_voc():
+#     print('Сейчас словарь содержит: ')
+#     for k, v in voc.items():
+#         print(k, '-', v) # Alt + 0151
+#
+# # загружаем словарь из файла
+# try:
+#     with open('dict.dat', 'rb') as dump_in:
+#         voc = pickle.load(dump_in)
+# except FileNotFoundError:
+#     with open('dict.dat', 'wb') as dump_out:
+#         pickle.dump(voc, dump_out)
+#     print('Создан минимальный словарь: ')
+#     print_voc()
+#
+# while True:
+#     temp = input('\nВведите слово для перевода или "#" для завершения: ')
+#     word = temp.strip().lower()
+#     if word == '#' or word == '№':
+#         break
+#     if word in voc.keys():
+#         translate = voc[word]
+#         print(f'Слово "{word}" переводится как {translate}.\n')
+#     else:
+#         print(f'Значение слова {word} отсутсвует в словаре.')
+#         newkey = f'А как слово {word} переводится?'
+#         newkey += 'Если ничего не вводите нажмите ENTER, \n'
+#         newkey  += 'или введите его здесь: '
+#         new_word = input(newkey)
+#
+#         if new_word != '' or len(new_word) > 2:
+#             voc[word] = new_word
+#             print(f'Слово {word} с переводом {new_word} внесено в словарь.')
+#         else:
+#             print('Ничего не введено или слишком короткое слово.')
+#             continue
+#
+# # Необходимо сохранить новый словарь
+# with open('dict.dat', 'wb') as dump_out:
+#     pickle.dump(voc, dump_out)
+#
+# print('До новых встреч!!!')
 
 
 # Задача 2 выявление исключений при делении двух чисел
