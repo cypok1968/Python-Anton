@@ -9,7 +9,7 @@
 # ? - от нуля до одного (аналог {0,1})
 # * - от нуля до бесконечности (32767) {0,}
 # + - от 1 до бесконечности (32767) {1,}
-import re
+# import re
 
 # pattern = r'\b\w{4}\b' # все слова из 4 символов СИМВОЛ "r" используем только
 #                        #  когда в строка выбора есть символ "\"
@@ -25,12 +25,12 @@ import re
 #                        # (ищет в отдельном выражении повторение символа один и более раз)
 # test_string = 'Поиск по образцу (pattern)'
 
-pattern = 'o{2,5}' # извлечение текста из скобок по образцу
-                       # (ищет в отдельном выражении повторение сивола "o" от 2 до 5 раз)
-test_string = 'Google, Goooogle, Goooooooogle'
+# pattern = 'o{2,5}' # извлечение текста из скобок по образцу
+#                        # (ищет в отдельном выражении повторение сивола "o" от 2 до 5 раз)
+# test_string = 'Google, Goooogle, Goooooooogle'
 # test_string = 'телефон 112'
-result = re.findall(pattern, test_string)
-print(result)
+# result = re.findall(pattern, test_string)
+# print(result)
 # Ternary If (тернарный условный оператор)
 # print('Цифры есть') if result else print('Цифры есть')
 
@@ -369,3 +369,4 @@ print(result)
 # res = sorted((int(x) for x in res)) # формируем новый список переведенный в числа
 #
 # print(res)
+

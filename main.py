@@ -2206,17 +2206,3 @@ from openpyxl import  load_workbook # импортируем модуль для
 # print()
 #os.rmdir('libs') # удаление директории
 
-from package1 import * # для __all__
-# from package1 import module
-# from package1.module import greet
-
-
-# from package1 import module
-
-
-print(int(module.factorial(5)))
-
-print(greet('Мир'))
-print(add(3, 7))
-print('Автор')
-print(package1.module._hidden_function())

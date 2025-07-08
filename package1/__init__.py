@@ -1,7 +1,7 @@
 # __init__.py показывает что работа идёт с пакетом package1
-from.module import greet # относительный упрощенный импорт из module
-from.module import factorial
-from.utils import add # относительный упрощенный импорт
+from .module import greet # относительный упрощенный импорт из module
+from .module import factorial
+from .utils import add # относительный упрощенный импорт
 
 
 
