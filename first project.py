@@ -14,10 +14,10 @@ for btl in reversed(range(99)): # склоняется слово "бутылк�
     print('Возьмём одну и выпьем') # вынимаем по одной бутылке из холодильника
                                    # (запуск цикла с правильным склонением слова "бутылки")
     if btl % 10 == 1 and btl != 11:
-        remain = 'Осталась'
+        remain = 'Осталась '
     else:
-        remain = 'Осталось'
-    print(f'{remain}{btl}{form.make_agree_with_number(btl).word} пива.')
+        remain = 'Осталось '
+    print(f'{remain}{btl} {form.make_agree_with_number(btl).word} пива.')
 
 
 #print(morph.parse('пила')) # анализирует слово "пила" на предмет двоякости (существительное, глагол)
