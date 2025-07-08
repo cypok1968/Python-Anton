@@ -28,7 +28,6 @@ with open('info.txt', 'rt') as f: # переписываем все элемен
     while temp := f.readline().rstip('\n'): # читаем строки из файла
         res += temp.split(', ')
 
-
 # res = list(map(lambda  x: x.rstip('\n'), res)) # отбрасываем ненужные символы
 # res = set(res) # превращаем в множество
 # res = set(list(map(lambda  x: x.rstip('\n'), res))) # упрощаем 2-е записи
