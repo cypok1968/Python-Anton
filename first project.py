@@ -7,28 +7,45 @@
 #     если исключения не было
 # finally:
 #     выполняется в любом случае
-from jinja2.ext import loopcontrols
+# "Бросаемся" исключениями - raise
 
-print('Остаток от деления:')
 
-loop = True
+max_val = 10
+min_val = 1
 
-while loop: # потоковый ввод чисел для деления 10 c выводом рез-та
-    try:
-        value = int(input('На что делим число 10:')) # возможны исключения: деление ноль,
-                                                 # деление не на целое число
-        res = 10 % value
-        print(f'Остаток от деления на {value} = {res}')
-    except ZeroDivisionError:
-        print('На ноль делить нельзя!')
-    except  ValueError:
-        print('Надо вводить только целые числа')
-    except Exception as exp:
-        print('Произошло исключение:',
-          exp.__class__.__name__,
-          exp)
-else:
-    loop = False
+try:
+    val = int(input(f'Введите целое число от {min_val} до {max_val}: '))
+    if not  min_val < val < max_val:
+        raise  ValueError('введенное число вне диапазона')
+    print(f'Введенное число {val} лежит в заданном диапазоне')
+except ValueError as exp:
+    print('Надо быть внимательнее: ', exp)
+
+
+
+
+# from jinja2.ext import loopcontrols
+#
+# print('Остаток от деления:')
+#
+# loop = True
+#
+# while loop: # потоковый ввод чисел для деления 10 c выводом рез-та
+#     try:
+#         value = int(input('На что делим число 10:')) # возможны исключения: деление ноль,
+#                                                  # деление не на целое число
+#         res = 10 % value
+#         print(f'Остаток от деления на {value} = {res}')
+#     except ZeroDivisionError:
+#         print('На ноль делить нельзя!')
+#     except  ValueError:
+#         print('Надо вводить только целые числа')
+#     except Exception as exp:
+#         print('Произошло исключение:',
+#           exp.__class__.__name__,
+#           exp)
+# else:
+#     loop = False
 
 # print('Остаток от деления:')
 #
