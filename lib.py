@@ -10,13 +10,17 @@ def diff(a, b):
 
 # Class Methods
 
+
+
+
 class Separator:
     def __init__(self):
         self.odd = []
         self.even = [] # чётные
 
     def add_num(self, num):
-        pass
+        if num % 2:
+            self.odd.append(num)
 
     def get_odd(self):
         return self.odd
