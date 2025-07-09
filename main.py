@@ -2060,7 +2060,6 @@ from openpyxl import  load_workbook # импортируем модуль для
 #
 # doc.add_picture('image/blue.jpg', width=Mm(10))
 
-
 # doc.save('docs/report.docx')
 
 # from PIL import Image, ImageFilter, ImageEnhance, ImageFont, ImageDraw
