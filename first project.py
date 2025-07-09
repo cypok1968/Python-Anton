@@ -25,6 +25,7 @@ result = re.findall(pattern, html) # выбираем на экран терми
 print(html)
 
 
+
 # result = re.findall(pattern, test_string)
 # print(result)
 
