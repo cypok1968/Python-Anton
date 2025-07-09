@@ -14,27 +14,71 @@
 
 # Методы классов и анализ предыдущих вызовов
 # Конструктор - метод, называющийся как и класс но с 2-мя скобками Констр. = Класс К() (в прг __init__)
-class Car:
-    def __init__(self, brand='Nonamt', model='Nomodel', color='Nocolor'):
-        self.brand = brand #'Skoda'
-        self.model = model #'Octavia'
-        self.color = color # 'red'
-        self.engine_on = False
-        #print('Конструктор вызван') # сначала просто заглушка, изменения см. ниже
+# Геттеры и сеттеры
 
-    def start_engine(self):
-        self.engine_on = True # через self.* фиксируем локальную переменную * метода, как внешнюю
-                              # (сохраняемая после исп-я метода ячейка памяти)
+# если этот метод класса добавить в lib, то вызов метода класса через from lib import Person
+class Person:
+    def __init__(self, name='Bill', age=1):
+        # свойства (поля) класса
+        self._name = name
+        self._age = age
 
-    def drive_to(self, place):
-        if self.engine_on:
-            print(f'Едем в {place} на {self.brand}', {self.model}, {self.color})
+    def person_info(self):
+        print(f'Человек с именем {self._name}. Возраст: {self._age}.')
+
+    # setter - атрибут класса: устанавливает значение поля
+    def set_name(self, new_name):
+        if new_name:
+            self._name = new_name
+
+    def set_age(self, new_age): # прошло несколько лет, человек вырос
+        if 0 < new_age < 150:
+            self._age = new_age
         else:
-            print('Двигатель не заведён, не едем')
+            print('Некорректный возраст - ', new_age)
 
-car = Car('Skoda', 'Octavia', 'red') # () - вызывает сразу метод Конструктора (__init__)
-car.start_engine()
-car.drive_to('город')
+    # getters
+
+    def get_name(self):
+        return self._name
+
+
+    def get_age(self):
+        return self._age
+
+    def person_info(self):
+        print(f'{self._name}.{self._age}')
+
+p = Person()
+p.set_age(89)
+print(p.get_name())
+p.person_info()
+# print(p._age) # нельзя к члену класса обращаться напрямую p.age, то есть и в поле класса
+# print(p._name)
+
+
+# from lib import Car (можно выгрузить, если метод класса занесён в нашу библиотеку lib)
+# class Car:
+#     def __init__(self, brand='Nonamt', model='Nomodel', color='Nocolor'):
+#         self.brand = brand #'Skoda'
+#         self.model = model #'Octavia'
+#         self.color = color # 'red'
+#         self.engine_on = False
+#         #print('Конструктор вызван') # сначала просто заглушка, изменения см. ниже
+#
+#     def start_engine(self):
+#         self.engine_on = True # через self.* фиксируем локальную переменную * метода, как внешнюю
+#                               # (сохраняемая после исп-я метода ячейка памяти)
+#
+#     def drive_to(self, place):
+#         if self.engine_on:
+#             print(f'Едем в {place} на {self.brand}', {self.model}, {self.color})
+#         else:
+#             print('Двигатель не заведён, не едем')
+#
+# car = Car('Skoda', 'Octavia', 'red') # () - вызывает сразу метод Конструктора (__init__)
+# car.start_engine()
+# car.drive_to('город')
 
 
 # Этот Метод для Класса не работает, требует доработки (см.выше)
@@ -110,8 +154,8 @@ car.drive_to('город')
 # + - от 1 до бесконечности (32767) {1,}
 # https://regex101.com сайт для работы с квантификаторами
 
-import re
-from re import sub
+# import re
+# from re import sub
 
 # pattern = r'<img[^>]+src="([^">]+)"'
 # # Сначала проверили
@@ -159,19 +203,19 @@ from re import sub
 
 
 
-def remove_punctuation(input_str: str) -> str:
-    """"
-    Методом sub()  заменяем все найденные совпадения
-    пустой строкой и возвращаем "очищенную
-    :param input_str: строка со знаками препинания
-    :return: строку очищенную от зн. преп.
-    """
-    return re.sub(r'[^\w\s]', '', input_str)
-
-test_string = 'Язык Python! явл?яется интуи,тивно понят.ным для; изучения'
-
-result = remove_punctuation(test_string)
-print(result)
+# def remove_punctuation(input_str: str) -> str:
+#     """"
+#     Методом sub()  заменяем все найденные совпадения
+#     пустой строкой и возвращаем "очищенную
+#     :param input_str: строка со знаками препинания
+#     :return: строку очищенную от зн. преп.
+#     """
+#     return re.sub(r'[^\w\s]', '', input_str)
+#
+# test_string = 'Язык Python! явл?яется интуи,тивно понят.ным для; изучения'
+#
+# result = remove_punctuation(test_string)
+# print(result)
 
 # pattern = r'[,.:;!]'
 # test_string = 'яблоко,груша.банан;слива!абрикос'
