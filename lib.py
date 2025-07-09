@@ -10,6 +10,22 @@ def diff(a, b):
 
 # Class Methods
 
+class Balance:
+    def __init__(self):
+        self.right = []
+        self.left = []
+
+    def add_left(self, weight):
+        pass
+
+    def add_right(self, weight):
+        pass
+
+    def result(self) -> str:
+        return # состояние (левая перевесила, уравновешена)
+
+
+
 class Sorter:
     def __init__(self):
         self.words = []
