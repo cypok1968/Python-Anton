@@ -10,8 +10,15 @@
 # * - от нуля до бесконечности (32767) {0,}
 # + - от 1 до бесконечности (32767) {1,}
 # https://regex101.com сайт для работы с квантификаторами
+
+# https://regex101.com сайт для работы с квантификаторами
+
+
+
+
+# https://regex101.com сайт для работы с квантификаторами
 import re
-from lib2to3.pygram import pattern_grammar
+
 
 # pattern = r'\b\w{4}\b' # все слова из 4 символов СИМВОЛ "r" используем только
 #                        #  когда в строка выбора есть метасимволы
@@ -33,7 +40,6 @@ from lib2to3.pygram import pattern_grammar
 # pattern = 'Go{2,}gle' # ищет в отдельном выражении повторение сивола "o" от 2 и более раз
 # pattern = r'стеклянн?ый' # 2-я "n" может присутствовать, но не обязательно
 # "жадный" (без ?) и "ленивый" (с ?) квантификатор (greedy quantifitr)
-
 # pattern = r'<img*>' # жадный квантификатор
 # pattern = r'<img*?>' # ленивый (lazy, non-greedy) квантификатор
 # test_string = 'Картинка <img src="bg.jpg"> в тексте <\p>'
@@ -41,15 +47,41 @@ from lib2to3.pygram import pattern_grammar
                                      # можно найти на любом сайте и использовать
                                      # (нарушает авторские права обладателя)
 # pattern = '<p>(.*?)</p>' # содержимое абзаца html
-pattern = r'<p[^>]*>(.*)</p>'# содержимое абзаца html с атрибутами
-test_string = '<b>Центрируем</b><p></b><p align="center">Содержимое</p>'
+# pattern = r'<p[^>]*>(.*)</p>'# содержимое абзаца html с атрибутами
+
+# def remove_punctuation(input_str: str) -> str:
+#     """"
+#     Методом sub()  заменяем все найденные совпадения
+#     пустой строкой и возвращаем "очищенную
+#     :param input_str: строка со знаками препинания
+#     :return: строку очищенную от зн. преп.
+#     """
+#     return re.sub(r'[^\w\s], ', input_str)
+
+pattern = r'[,.:;!]'
+test_string = 'яблоко,груша.банан;слива!абрикос'
+test_string =''.join(test_string.split()) # убираем все пробелы
+result = re.split(pattern, test_string)
+# через map
+# result = list(map(lambda x: x.strip(), result))
+# через list comprehension
+# result = [x.strip() for x in result]
+result = sorted(x.strip() for x in result) # с сортировкой, если нужно
+print(result)
+
+# test_string = 'Язык Python, явл?яясь интуи,тивно понятным, прост для изучения'
+
+# result = remove_punctuation(test_string)
+
+
+# test_string = '<b>Центрируем</b><p></b><p align="center">Содержимое</p>'
 # test_string = '<b>Вот начало: </b><p>Содержимое</p><i>и т.д.</i>'
 # test_string = 'стеклянный, стекляный, оловянный, серебряный'
 
 # test_string = 'Google, Goooogle, Goooooooogle'
 # test_string = 'телефон 112'
-result = re.findall(pattern, test_string)
-print(result)
+# result = re.findall(pattern, test_string)
+# print(result)
 # Ternary If (тернарный условный оператор)
 # print('Цифры есть') if result else print('Цифры есть')
 
