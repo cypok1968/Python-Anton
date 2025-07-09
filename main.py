@@ -2132,22 +2132,16 @@ from openpyxl import  load_workbook # импортируем модуль для
 # from .lib import summ - относительный импорт (лучше не злоупотреблять)
 
 # from package1 import * # для __all__
-# from package1.module import greet
-# from package1 import *
-#
+# from package1.module import _hidden_function
+
 # from package1 import module
-# # from package1 import *
-#
-#
-# print(int(module.factorial(5)))
-# print(module.add(50, 80))
-#
+
+# print(int(factorial(5)))
+
 # print(greet('Мир'))
 # print(add(3, 7))
 # print('Автор')
-#print(package1.module._hidden_function()) # при попытке вывода результата скрытой функции _hidden_function
-#                                           # выдается предупреждение об ограничении её использования
-#
+# print(_hidden_function()) # внимание скрытая функция !!! начинается на _
 #
 # import lib
 #from lib import diff
@@ -2206,17 +2200,6 @@ from openpyxl import  load_workbook # импортируем модуль для
 # print()
 #os.rmdir('libs') # удаление директории
 
-from package1 import * # для __all__
-from package1.module import _hidden_function
 
-# from package1 import module
-
-
-print(int(factorial(5)))
-
-print(greet('Мир'))
-print(add(3, 7))
-print('Автор')
-print(_hidden_function()) # внимание скрытая функция !!! начинается на _
 
 
