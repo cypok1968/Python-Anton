@@ -10,7 +10,15 @@ def diff(a, b):
 
 # Class Methods
 
+class Sorter:
+    def __init__(self):
+        self.words = []
 
+    def add_word(self, word):
+        self.words.append(word)
+
+    def result(self):
+        return sorted(self.words, key=lambda x: len(x), reverse=True)# список слов отсортированный по длине
 
 
 class Separator:

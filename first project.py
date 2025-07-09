@@ -18,14 +18,25 @@
 # Статичные члены класса
 # ДЗ 09/07/25 - добавить в lib геттеры и сеттеры для Car брэнда, модели и цвета
 
-from  lib import Separator
+from  lib import Sorter
 
-s = Separator()
+s = Sorter()
 
-for i in range(20):
-    s.add_num(i)
+s.add_word('Привет')
+s.add_word('пока')
+s.add_word('здорово')
 
-print(s.get_odd())
+print(s.result())
+
+
+# from  lib import Separator
+#
+# s = Separator()
+#
+# for i in range(20):
+#     s.add_num(i)
+#
+# print(s.get_odd())
 
 # from lib import Clicker
 #
