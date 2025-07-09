@@ -11,13 +11,23 @@
 # + - от 1 до бесконечности (32767) {1,}
 # https://regex101.com сайт для работы с квантификаторами
 
-# https://regex101.com сайт для работы с квантификаторами
-
-
-
-
-# https://regex101.com сайт для работы с квантификаторами
 import re
+import requests
+
+pattern = r'<img[^>]+src="([^">]+)"'
+# Сначала проверили
+# test_string = '<img height="50" width="150" src="images/bg.jpg">"'
+# html = requests.get('https://skillbox.ru') # метод get качает инфо о сайте
+html = requests.get('https://skillbox.ru').text # метод get качает вывод инфо в текстовом формате
+result = re.findall(pattern, html) # выбираем на экран терминала пути ко всем картинкам сайта
+                                  # копировани и редактирование html картинок с сайта
+                                  # является незаконным по отношению к авторским правам правообладателя
+print(html)
+
+
+# result = re.findall(pattern, test_string)
+# print(result)
+
 
 
 # pattern = r'\b\w{4}\b' # все слова из 4 символов СИМВОЛ "r" используем только
@@ -58,16 +68,16 @@ import re
 #     """
 #     return re.sub(r'[^\w\s], ', input_str)
 
-pattern = r'[,.:;!]'
-test_string = 'яблоко,груша.банан;слива!абрикос'
-test_string =''.join(test_string.split()) # убираем все пробелы
-result = re.split(pattern, test_string)
+# pattern = r'[,.:;!]'
+# test_string = 'яблоко,груша.банан;слива!абрикос'
+# test_string =''.join(test_string.split()) # убираем все пробелы
+# result = re.split(pattern, test_string)
 # через map
 # result = list(map(lambda x: x.strip(), result))
 # через list comprehension
 # result = [x.strip() for x in result]
-result = sorted(x.strip() for x in result) # с сортировкой, если нужно
-print(result)
+# result = sorted(x.strip() for x in result) # с сортировкой, если нужно
+# print(result)
 
 # test_string = 'Язык Python, явл?яясь интуи,тивно понятным, прост для изучения'
 
@@ -93,5 +103,4 @@ print(result)
 # #result = re.search(pattern, test_string)
 # result = re.findall(pattern, test_string) # ищет все повторения 4-х символов подряд в строке
 # print(result)
-
 
