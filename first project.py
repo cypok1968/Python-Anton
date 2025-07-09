@@ -15,45 +15,72 @@
 # Методы классов и анализ предыдущих вызовов
 # Конструктор - метод, называющийся как и класс но с 2-мя скобками Констр. = Класс К() (в прг __init__)
 # Имя Класса всегда начинается с большой Буквы
+# Статичные члены класса
+# ДЗ 09/07/25 - добавить в lib геттеры и сеттеры для Car брэнда, модели и цвета
+
+from lib import Clicker
+
+cl = Clicker()
+
+cl.click()
+cl.click()
+cl.click()
+
+print(cl.get_counter())
+cl.reset()
+print(cl.get_counter())
+
+# from lib import  Car
+#
+# car = Car()
+#
+# print(dir(car)) # вызов на экран переменных и методов (свойств) Класса
+
+# car1 = Car()
+# car2 = Car()
+# car3 = Car()
+#
+# print('В парке машин: ', Car.get_counter())
+
 # Геттеры и сеттеры
 
 # если этот метод класса добавить в lib, то вызов метода класса через from lib import Person
-class Person:
-    def __init__(self, name='Bill', age=1):
-        # свойства (поля) класса
-        self._name = name
-        self._age = age
-
-    def person_info(self):
-        print(f'Человек с именем {self._name}. Возраст: {self._age}.')
-
-    # setter - атрибут класса: устанавливает значение поля
-    def set_name(self, new_name):
-        if new_name:
-            self._name = new_name
-
-    def set_age(self, new_age): # прошло несколько лет, человек вырос
-        if 0 < new_age < 150:
-            self._age = new_age
-        else:
-            print('Некорректный возраст - ', new_age)
-
-    # getters
-
-    def get_name(self):
-        return self._name
-
-
-    def get_age(self):
-        return self._age
-
-    def person_info(self):
-        print(f'{self._name}.{self._age}')
-
-p = Person()
-p.set_age(89)
-print(p.get_name())
-p.person_info()
+# class Person:
+#     def __init__(self, name='Bill', age=1):
+#         # свойства (поля) класса
+#         self._name = name
+#         self._age = age
+#
+#     def person_info(self):
+#         print(f'Человек с именем {self._name}. Возраст: {self._age}.')
+#
+#     # setter - атрибут класса: устанавливает значение поля
+#     def set_name(self, new_name):
+#         if new_name:
+#             self._name = new_name
+#
+#     def set_age(self, new_age): # прошло несколько лет, человек вырос
+#         if 0 < new_age < 150:
+#             self._age = new_age
+#         else:
+#             print('Некорректный возраст - ', new_age)
+#
+#     # getters
+#
+#     def get_name(self):
+#         return self._name
+#
+#
+#     def get_age(self):
+#         return self._age
+#
+#     def person_info(self):
+#         print(f'{self._name}.{self._age}')
+#
+# p = Person()
+# p.set_age(89)
+# print(p.get_name())
+# p.person_info()
 # print(p._age) # нельзя к члену класса обращаться напрямую p.age, то есть и в поле класса
 # print(p._name)
 
