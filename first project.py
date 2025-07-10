@@ -2,38 +2,78 @@
 # method override; operator overloadind
 # (термины: переопределения метода и переопределения оператора)
 # "утиная типизация" - функция-оператор сама различает к какому классу относится операнд
+
+# ООП (magic methods) - специальные методы
+# для нужд отладки и визуализации
+
+
+from math import hypot
+
+class Point:
+    def __init__(self, x=0, y=0):
+        self.x = x
+        self.y = y
+
+    def __str__(self):
+        return f'Point: ({self.x}, {self.y})>'
+
+    def __repr__(self):
+        return f'Points: ({self.x}, {self.y})'
+
+    def __sub__(self, other):
+        #return Point(self.x - other.x, self.y - other.y) # вывод расстояний между 2-мя (.)
+                                                          # на коорд.плоскости с учетом знака
+        return Point(abs(self.x - other.x), abs(self.y - other.y)) # ...абсолютное значение
+
+    # Расчёт расстояния между точками на координатной плоскости
+    def __add__(self, other):
+        return hypot(self.x - other.x, self.y - other.y) # исп. готовую ф-ю из библ.math
+
+# Расчёт расстояния между A(5, 4), B(10, 2) точками на координатной плоскости
+p1 = Point(5, 4) # коордиинаты первой точки на коорд.плоскости
+p2 = Point(10, 2) # коордиинаты второй точки на коорд.плоскости
+print(p1-p2) # вывод значений массива длин катетов
+print(p1+p2) # вывод расчёта гипотенузы
+            # (расстояния между 2-мя точками на координат.плоскости)
+print(29**0.5) # проверка метода расчёта расстояния между 2-мя точками на координат.плоскости
+# p = [Point(), Point()]
+# p = Point()
+# print(p)
+#str(a) -> a.__str__ (одинаковый перевод в строку)
+
+
 # isinstance (объект, тип) -> True
 # isinstance (объект, (тип 1, тип 2, ... , тип N) -> True (если список, то действуем по другому сценарию)
 
-lst = list(range(1, 15))
-lst += ['a'] # добавим элемент списка не явл. целым числом
-
-class Stat:
-        def __init__(self, vals):# класс возвращает мин, макс и среднее арифметическое
-            self.values = vals[:]
-
-        def is_int(self) -> bool:
-            return all(isinstance(item, int) for item in self.values)
-
-        def get_min(self):
-            if self.is_int():
-                return min(self.values)
-            return None
-
-        def get_max(self):
-            if self.is_int():
-                return min(self.values)
-            return None
-
-        def get_aver(self):
-            if self.is_int():
-                return sum(self.values) / len(self.values)
-            return None
-
-s =  Stat(lst)
-print(s.get_min())
-print(s.get_max())
-print(s.get_aver())
+# lst = list(range(1, 15))
+# lst += ['a'] # добавим элемент списка не явл. целым числом
+#
+# class Stat:
+#         def __init__(self, vals):# класс возвращает мин, макс и среднее арифметическое
+#             self.values = vals[:]
+#
+#         def is_int(self) -> bool:
+#             return all(isinstance(item, int) for item in self.values)
+#
+#         def get_min(self):
+#             if self.is_int():
+#                 return min(self.values)
+#             return None
+#
+#         def get_max(self):
+#             if self.is_int():
+#                 return min(self.values)
+#             return None
+#
+#         def get_aver(self):
+#             if self.is_int():
+#                 return sum(self.values) / len(self.values)
+#             return None
+#
+# s =  Stat(lst)
+# print(s.get_min())
+# print(s.get_max())
+# print(s.get_aver())
 
 # class Selector():
 #     def __init__(self, vals):
@@ -66,7 +106,7 @@ print(s.get_aver())
 #     else:
 #         print(person.get_name(), person.get_age())
 
-from lib import Rectangle, Circle, Square, Employee
+#from lib import Rectangle, Circle, Square
 
 # from math import pi
 #
@@ -113,11 +153,11 @@ from lib import Rectangle, Circle, Square, Employee
 #
 #     def get_name(self):
 #         return self.name
-# # 1-й способ
-# # def shape_info(shape: object):
-# #     print(f'Площадь {shape.get_name()}a: {shape.area()}, Периметр: {shape.perimetr()}')
-# #     # функция shape_info различает обращение к вычисляемым значениям по классу объекта
-#
+# # # 1-й способ
+# # # def shape_info(shape: object):
+# # #     print(f'Площадь {shape.get_name()}a: {shape.area()}, Периметр: {shape.perimetr()}')
+# # #     # функция shape_info различает обращение к вычисляемым значениям по классу объекта
+# #
 # # 2-й способ через isinstance
 # rect, circ, sqr = ['прямоугольник', 'круг', 'квадрат']
 # fig = ''
@@ -126,9 +166,10 @@ from lib import Rectangle, Circle, Square, Employee
 #         fig = circ
 #     elif isinstance(shape, Rectangle):
 #         fig = rect
-#     elif isinstance(shape, Square):
+#     else:
 #         fig = sqr
-#         print(f'Площадь {fig}a: {shape.area()}, Периметр: {shape.perimetr()}')
+#
+#     print(f'Площадь {fig}a: {shape.area()}, Периметр: {shape.perimetr()}')
 
 # s = Square(10)
 # shape_info(s)

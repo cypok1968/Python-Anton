@@ -51,11 +51,11 @@ class Rectangle:
 
     def get_name(self):
         return self.name
-# 1-й способ
-# def shape_info(shape: object):
-#     print(f'Площадь {shape.get_name()}a: {shape.area()}, Периметр: {shape.perimetr()}')
-#     # функция shape_info различает обращение к вычисляемым значениям по классу объекта
-
+# # 1-й способ
+# # def shape_info(shape: object):
+# #     print(f'Площадь {shape.get_name()}a: {shape.area()}, Периметр: {shape.perimetr()}')
+# #     # функция shape_info различает обращение к вычисляемым значениям по классу объекта
+#
 # 2-й способ через isinstance
 rect, circ, sqr = ['прямоугольник', 'круг', 'квадрат']
 fig = ''
@@ -64,9 +64,10 @@ def shape_info(shape: object):
         fig = circ
     elif isinstance(shape, Rectangle):
         fig = rect
-    elif isinstance(shape, Square):
+    else:
         fig = sqr
-        print(f'Площадь {fig}a: {shape.area()}, Периметр: {shape.perimetr()}')
+
+    print(f'Площадь {fig}a: {shape.area()}, Периметр: {shape.perimetr()}')
 
 # Class Methods
 
