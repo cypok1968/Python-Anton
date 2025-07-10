@@ -5,8 +5,68 @@ def summ(a, b):
 def diff(a, b):
     return a - b
 
+# Фигуры, периметр и площадь
+from math import pi
+
+class Circle:
+    def __init__(self, radius):
+        self.radius = radius
+        self.name = 'круг'
+
+    def perimetr(self):
+        return 2 * pi * self.radius
+
+    def area(self):
+        return pi * self.radius ** 2
+
+    def get_name(self):
+        return self.name
 
 
+class Square:
+    def __init__(self, side):
+        self.side = side
+        self.name = 'квадрат'
+
+    def perimetr(self):
+        return 4 * self.side
+
+    def area(self):
+        return self.side ** 2
+
+    def get_name(self):
+        return self.name
+
+class Rectangle:
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+        self.name = 'прямоугольник'
+
+    def perimetr(self):
+        return 2 * (self.width + self.height)
+
+    def area(self):
+        return self.width * self.height
+
+    def get_name(self):
+        return self.name
+# 1-й способ
+# def shape_info(shape: object):
+#     print(f'Площадь {shape.get_name()}a: {shape.area()}, Периметр: {shape.perimetr()}')
+#     # функция shape_info различает обращение к вычисляемым значениям по классу объекта
+
+# 2-й способ через isinstance
+rect, circ, sqr = ['прямоугольник', 'круг', 'квадрат']
+fig = ''
+def shape_info(shape: object):
+    if isinstance(shape, Circle):
+        fig = circ
+    elif isinstance(shape, Rectangle):
+        fig = rect
+    elif isinstance(shape, Square):
+        fig = sqr
+        print(f'Площадь {fig}a: {shape.area()}, Периметр: {shape.perimetr()}')
 
 # Class Methods
 
@@ -123,9 +183,27 @@ class Car:
     # def get_model(self):
     #     return self.model
 
+# Списки лиц и организаций
+class Student:
+    def __init__(self, name='', univ=''):
+        # свойства (поля) класса
+        self._name = name
+        self._univ = univ
+
+    def get_univ(self):
+        return self._name, self._univ
+
+class Employee:
+    def __init__(self, name='', comp=''):
+        # свойства (поля) класса
+        self._name = name
+        self._comp = comp
+
+    def get_comp(self):
+        return self._name, self._comp
 
 class Person:
-    def __init__(self, name='Bill', age=1):
+    def __init__(self, name='Bill', age= 21):
         # свойства (поля) класса
         self._name = name
         self._age = age
