@@ -18,20 +18,20 @@
 # Статичные члены класса
 # ДЗ+ 09/07/25 - добавить в lib геттеры и сеттеры для Car брэнда, модели и цвета
 
-from lib import Balance
-
-b = Balance(),
-
-b.add_left(5)
-b.add_right(4)
-b.add_left(3)
-b.add_right(5)
-b.add_left(6)
-b.add_right(7)
-b.add_left(2)
-b.add_right(4)
-
-print(b.result())
+# from lib import Balance
+#
+# b = Balance(),
+#
+# b.add_left(5)
+# b.add_right(4)
+# b.add_left(3)
+# b.add_right(5)
+# b.add_left(6)
+# b.add_right(7)
+# b.add_left(2)
+# b.add_right(4)
+#
+# print(b.result())
 
 # from  lib import Sorter
 #

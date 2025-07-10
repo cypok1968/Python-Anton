@@ -10,31 +10,43 @@ def diff(a, b):
 
 # Class Methods
 
-class Balance:
-    def __init__(self):
-        self.right = []
-        self.left = []
-
-    def add_left(self, weight):
-        pass
-
-    def add_right(self, weight):
-        pass
-
-    def result(self) -> str:
-        return # состояние (левая перевесила, уравновешена)
-
-
-
-class Sorter:
-    def __init__(self):
-        self.words = []
-
-    def add_word(self, word):
-        self.words.append(word)
-
-    def result(self):
-        return sorted(self.words, key=lambda x: len(x), reverse=True)# список слов отсортированный по длине
+# class Balance:
+#     def __init__(self):
+#         self._right = []
+#         self._left = []
+#
+#      __name__
+#
+#     def add_left(self, weight):
+#         pass
+#
+#     def add_right(self, weight: int): -> None:
+#         """"
+#         Добавляет вес в левую чашу
+#         :param weight: вес, размещаемый в правую чашу
+#         :raises ValueError: если вес отрицательный
+#         """"
+#         if weight < 0:
+#             raise ValueError('Снятие веса не поддерживается в текущей версии'
+#         self._right += weight
+#
+#     def result(selfs):
+#
+#
+#     def result(self) -> str:
+#         return # состояние (левая перевесила, уравновешена)
+#
+#
+#
+# class Sorter:
+#     def __init__(self):
+#         self.words = []
+#
+#     def add_word(self, word):
+#         self.words.append(word)
+#
+#     def result(self):
+#         return sorted(self.words, key=lambda x: len(x), reverse=True)# список слов отсортированный по длине
 
 
 class Separator:
