@@ -1,3 +1,5 @@
+# ДЗ 10/07/25 в Телеграм
+
 # OOП Class
 """
 Задача: создать классы для моделирования клиента банка и их счетов.
@@ -5,34 +7,34 @@
 Класс BankAccount с атрибутами: _owner_name, balance.
 Методы: deposit(amount), withdraw(amount), get_balance().
 """
-class  BankAccount:
-    def __init__(self, owner, balance=0):
-        self._owner = owner
-        self._balance = balance
-
-    def get_balance(self):
-        return self._balance
-
-    def deposit(self, amount):
-        if amount > 0:
-            self._balance += amount
-            print(f'Депозит пополнен на сумму: {amount}.')
-        else:
-            print(f'Нельзя вносить отрицательную сумму на депозит.')
-
-
-    def withdraw(self, amount):
-        if 0 < amount <= self._balance:
-            self._balance -= amount
-            print(f'с депозита снята сумма: {amount}.')
-        else:
-            print(f'Не хватает средств. Овердрафт не доступен')
-
-
-client1 = BankAccount('John')
-client1.deposit(1000)
-client1.withdraw(600)
-print('Остаток: ', client1.get_balance())
+# class  BankAccount:
+#     def __init__(self, owner, balance=0):
+#         self._owner = owner
+#         self._balance = balance
+#
+#     def get_balance(self):
+#         return self._balance
+#
+#     def deposit(self, amount):
+#         if amount > 0:
+#             self._balance += amount
+#             print(f'Депозит пополнен на сумму: {amount}.')
+#         else:
+#             print(f'Нельзя вносить отрицательную сумму на депозит.')
+#
+#
+#     def withdraw(self, amount):
+#         if 0 < amount <= self._balance:
+#             self._balance -= amount
+#             print(f'с депозита снята сумма: {amount}.')
+#         else:
+#             print(f'Не хватает средств. Овердрафт не доступен')
+#
+#
+# client1 = BankAccount('John')
+# client1.deposit(1000)
+# client1.withdraw(600)
+# print('Остаток: ', client1.get_balance())
 
 
 
