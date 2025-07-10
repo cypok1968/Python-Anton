@@ -7,27 +7,27 @@
 # для нужд отладки и визуализации
 
 
-from math import hypot
-
-class Point:
-    def __init__(self, x=0, y=0):
-        self.x = x
-        self.y = y
-
-    def __str__(self):
-        return f'Point: ({self.x}, {self.y})>'
-
-    def __repr__(self):
-        return f'Points: ({self.x}, {self.y})'
-
-    def __sub__(self, other):
-        #return Point(self.x - other.x, self.y - other.y) # вывод расстояний между 2-мя (.)
-                                                          # на коорд.плоскости с учетом знака
-        return Point(abs(self.x - other.x), abs(self.y - other.y)) # ...абсолютное значение
-
-    # Расчёт расстояния между точками на координатной плоскости
-    def __add__(self, other):
-        return hypot(self.x - other.x, self.y - other.y) # исп. готовую ф-ю из библ.math
+# from math import hypot
+#
+# class Point:
+#     def __init__(self, x=0, y=0):
+#         self.x = x
+#         self.y = y
+#
+#     def __str__(self):
+#         return f'Point: ({self.x}, {self.y})>'
+#
+#     def __repr__(self):
+#         return f'Points: ({self.x}, {self.y})'
+#
+#     def __sub__(self, other):
+#         #return Point(self.x - other.x, self.y - other.y) # вывод расстояний между 2-мя (.)
+#                                                           # на коорд.плоскости с учетом знака
+#         return Point(abs(self.x - other.x), abs(self.y - other.y)) # ...абсолютное значение
+#
+#     # Расчёт расстояния между точками на координатной плоскости
+#     def __add__(self, other):
+#         return hypot(self.x - other.x, self.y - other.y) # исп. готовую ф-ю из библ.math
 
 # Расчёт расстояния между A(5, 4), B(10, 2) точками на координатной плоскости
 p1 = Point(5, 4) # коордиинаты первой точки на коорд.плоскости
