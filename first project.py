@@ -1,25 +1,130 @@
-# ООП (polymorphism - свойство кода работать с разными типами данных)
-# method override; operator overloadind
-# (термины: переопределения метода и переопределения оператора)
-# "утиная типизация" - функция-оператор сама различает к какому классу относится операнд
+# ООП (inheritance)
+# класс, от которого наследуем: базовый, родительский, суперкласс
+# класс-наследник, который наследуется: дочерний,
+
+# Фигуры
+from math import pi
+from abc import ABC, abstractmethod
+#class Shape(object): # высший класс по иерархии для всех классов object,
+                     # в скобках его можно не указывать (по умолчанию), наследуются все его методы
+class Shape(ABC):
+    def info(self):
+        print(f'Класс: {self.__class__.__name__}')
+
+    @abstractmethod
+    def area(self):
+        pass
+
+    @abstractmethod
+    def perimetr(self):
+        pass
+
+
+class Circle(Shape):
+    def __init__(self, radius):
+        self.radius = radius
+        self.name = 'круг' # при наследовании базовом суперклассе Shape класс определён и
+                        # нет необходимости в выводе имени отдельного класса
+
+    def perimetr(self):
+        return 2 * pi * self.radius
+
+    def area(self):
+        return pi * self.radius ** 2
+
+    def get_name(self):
+        return self.name
+
+class Rectangle(Shape): # базовый суперкласс, от которого наследуем в Square
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+        self.name = 'прямоугольник' # при наследовании базовом суперклассе Shape класс определён и
+                                    # нет необходимости в выводе имени отдельного класса
+
+    def perimetr(self):
+        return 2 * (self.width + self.height)
+
+    def area(self):
+        return self.width * self.height
+
+    def get_name(self):
+        return self.name
+
+
+class Square(Rectangle, Shape): # ссылка на наследование базового метода Rectangle
+    def __init__(self, side):
+        super().__init__(side, side)  # задаем для квадрата одинаковые стороны
+                                     # для конструктора базового класса
+        # self.side = side # строка становится не нужна при наследовании
+        self.name = 'квадрат' # при наследовании базовом суперклассе Shape класс определён и
+                              # нет необходимости в выводе имени отдельного класса
+
+class Triangle(Square):  # ссылка на наследование базового метода Rectangle
+    def __init__(self, side):
+        super().__init__(side)
+        self.side = side
+        self.name = 'треугольник'
+
+    def area(self):
+        return (self.side ** 2 * 3 * 0.5) / 4
+
+        def perimetr(self):
+            return self.side * 3
+
+
+    # def perimetr(self): # при наследовании квадратом определения прямоугольника
+    #                     # эти процедуры, только для квадрата становятся не нужны (не влияют на рез-т)
+    #     return 4 * self.side
+    #
+    # def area(self):
+    #     return self.side ** 2
+
+    # def get_name(self):
+    #     return self.name
+
+
+c = Circle(5)
+print(c.area())
+print(c.perimetr())
+print(c.get_name())
+c.info()
+
+s = Square(5)
+print(s.area())
+print(s.perimetr())
+print(s.get_name())
+s.info()
+
+r = Rectangle(5, 4)
+print(r.area())
+print(r.perimetr())
+print(r.get_name())
+r.info()
+
+t = Triangle(5)
+print(t.area())
+print(t.perimetr())
+print(t.get_name())
+t.info()
 
 # ООП (magic methods) - специальные методы
 # для нужд отладки и визуализации
 
 # __call__ - экземпляр класса становится вызываемым (как функция)
 # y = ax^2 + bx + c
-class SquareFunction:
-    def __init__(self, a, b, c):
-        self.a = a
-        self.b = b
-        self.c = c
-
-    def __call__(self, x):
-        return self.a * x ** 2 + self.b * x + self.c
-
-
-s = SquareFunction(1, 2, 3) # вызов экземпляра s (со свойствами функции)
-print(s(2))
+# class SquareFunction:
+#     def __init__(self, a, b, c):
+#         self.a = a
+#         self.b = b
+#         self.c = c
+#
+#     def __call__(self, x):
+#         return self.a * x ** 2 + self.b * x + self.c
+#
+#
+# s = SquareFunction(1, 2, 3) # вызов экземпляра s (со свойствами функции)
+# print(s(2))
 
 # class MyTime:
 #     def __init__(self, minutes, seconds):
@@ -252,3 +357,7 @@ print(s(2))
 #
 # print(func(2, 3.0))
 
+# ООП (polymorphism - свойство кода работать с разными типами данных)
+# method override; operator overloadind
+# (термины: переопределения метода и переопределения оператора)
+# "утиная типизация" - функция-оператор сама различает к какому классу относится операнд
