@@ -1,0 +1,19 @@
+h2 {
+    colour: blue;
+    }
+
+p.red {
+    color: RGB(255, 0, 0);
+}
+
+p.green {
+color: green;
+}
+
+# yellow {
+color: yellow;
+}
+
+ul>li {
+color: yellow;
+}
