@@ -1,6 +1,45 @@
 # ДЗ 10/07/25 в Телеграм
 
 # OOП Class
+
+from abc import ABC, @abstractmethod
+
+class Animal:
+    @abstractmethod
+    def make_sound(self):
+        pass
+
+
+class Dog(Animal):
+    def make_sound(self):
+
+
+
+class Cat(Animal):
+    def make_sound(self):
+
+
+class Cat(Animal):
+    def make_sound(self):
+
+
+
+class (Zoo):
+    def add_animal
+
+
+
+
+dog = Dog()
+cat = Cat()
+
+zoo = Zoo()
+
+zoo.add_animal(dog)
+
+
+
+
 """
 Задача: создать классы для моделирования клиента банка и их счетов.
 Условия:
