@@ -30,7 +30,7 @@ function changeColor() {
     if(txt.style.display === 'none') {
     txt.style.display = 'block';
     } else {
-        txt.style.display -'none'
+        txt.style.display ='none'
     }
 }
 
