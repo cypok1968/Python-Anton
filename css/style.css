@@ -27,3 +27,15 @@ text-align: center;
 .go-top--show {
     display: block;
 }
+
+.go-top--show {
+    position: fixed;
+    right: 20px;
+    bottom: 50px;
+    cursor: pointer;
+    /*display: none;*/
+    font-size: 18pt;
+    color: rgba(0, 51, 153, 0.5);
+    background-color: rgba(0, 51, 153, 0.1);
+    padding: 8px 15px 12px 15px; /* количество пикселей 4-х отступов (полный вид для каждого отступа разные)
+}

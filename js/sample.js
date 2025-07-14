@@ -28,7 +28,7 @@ function changeColor() {
     const txt = document.getElementById('alive');
     // совпадают по типу данных и по значению (===)
     if(txt.style.display === 'none') {
-    txt.style.display = block;
+    txt.style.display = 'block';
     } else {
         txt.style.display -'none'
     }
@@ -36,3 +36,4 @@ function changeColor() {
 
 //Подключаюсь к элементу в DOM
 const txt = document.getElementById('alive').onclick = changeColor;
+
