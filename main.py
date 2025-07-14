@@ -3434,6 +3434,7 @@ from abc import ABC, @abstractmethod
 # mk dir - создать директорию
 # mv - перемещение файла в другую директорию с переименованием
 
+
 # print('hello world')
 #
 # import sys
