@@ -1,3 +1,26 @@
+# requirements.txt
+# attrs==25.3.0
+# babel==2.17.0
+# docxcompose==1.4.0
+# docxtpl==0.20.0
+# et_xmlfile==2.0.0
+# flake8==7.3.0
+# flake8-bugbear==24.12.12
+# Jinja2==3.1.6
+# lib==4.0.0
+# lxml==6.0.0
+# MarkupSafe==3.0.2
+# mccabe==0.7.0
+# openpyxl==3.1.5
+# pep8-naming==0.15.1
+# pillow==11.3.0
+# pycodestyle==2.14.0
+# pyflakes==3.4.0
+# python-docx==1.2.0
+# setuptools==80.9.0
+# six==1.17.0
+# typing_extensions==4.14.1
+
 # Периодические задачи (schedule - "расписатель)
 
 import schedule # "расписатель" (временной инструктор) - функция выполнения по расписанию какой-либо работы
