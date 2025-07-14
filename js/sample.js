@@ -36,4 +36,3 @@ function changeColor() {
 
 //Подключаюсь к элементу в DOM
 const txt = document.getElementById('alive').onclick = changeColor;
-

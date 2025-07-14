@@ -3018,7 +3018,6 @@ from abc import ABC, @abstractmethod
 #     def perimetr(self):
 #         pass
 #
-#
 # class Circle(Shape):
 #     def __init__(self, radius):
 #         self.radius = radius
