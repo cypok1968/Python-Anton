@@ -3451,4 +3451,3 @@ from abc import ABC, @abstractmethod
 #             print('Пока')
 #         case _:
 #             print('Не понял')
-#
