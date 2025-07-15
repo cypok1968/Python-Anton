@@ -7,7 +7,6 @@ window.addEventsListener("scroll", trackScroll);
 topBtn.addEventsListener("click", goTop);
 
 
-
 function trackScroll() {
     // вычисляем положение от верхушки окна
     сonst scrolled = window.pageYOffset;

@@ -20,8 +20,6 @@
 
 
 
-
-
 # with open('dogs.json', 'rt') as d:
 #     # data = json.load(d) # для последующего чтения напрямую из файла
 # # print(data) # простой вывод инфо из словаря
