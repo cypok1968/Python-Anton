@@ -1,43 +1,85 @@
+# Декораторы (определение функции внутри другой функции)
+
+def upper_case_print(old_func):
+    def new_func(*args, **kwargs):
+        case = kwargs.pop('case', None)
+        if case =='U':
+            args_up_case = [str(arg).upper() for arg in args]  # декорируем чужую функцию верхним регистром вывода текста
+        elif case =='L':                                      # ИЛИ
+            args_up_case = [str(arg).lower() for arg in args] # декорируем чужую функцию нижним регистром вывода текста
+        return old_func(*args, **kwargs)
+    return  new_func
+new_print = upper_case_print(print)
+new_print('приветствую') # получаем верхний регистр ПРИВЕТСТВУЮ
+new_print('Привет', case='U')
+new_print('Привет', case='L')
+
+# def upper_case_print(old_func):
+#     def new_func(*args, **kwargs):
+#         args_up_case = [str(arg).upper() for arg in args]  # декорируем чужую функцию верхним регистром вывода текста
+#         old_func(*args_up_case, **kwargs)
+#     return  new_func
+# new_print = upper_case_print(print)
+# new_print('приветствую') # получаем верхний регистр ПРИВЕТСТВУЮ
+
+# def answer(question): # функция с небогатым функционалом (не имеем права переделывать)
+#     return 'думайте сами'
+#
+# def dialog():
+#     def answer(question): # переопределяем (расширяем) функционал чужой функции
+#                        # внутри своей функции (с необходимые нам свойствами)
+#         if question.lower().startswith('когда'):
+#             return 'Никогда'
+#         else:
+#             return 'Уппппс'
+#     question = input()
+#     while question != '':
+#         print(answer(question))
+#         question = input()
+#
+# dialog()
+
 # Погода через API
-from http.client import responses
-import requests
-from PIL import Image
-import io
 
-API_KEY = '59c82cd885057e420a60002ceb04e81e'
-URL = 'http://api.openweathermap.org/data/2.5/weather'
-CITY = 'Лондон'
-
-params = {
-    'q': CITY,
-    'appid': API_KEY,
-    'units': 'metric',
-    'lang': 'ru'
-}
-
-response = requests.get(URL, params=params)
-result = response.json()
-# print(result)
-
-weather = result['weather'][0]['description']
-temperature = result['main']['temp']
-humidity = result['main']['humidity']
-wind = result['wind']['speed']
-data = result['coord']
-ll = f'{data['lon']},{data['lat']}'
-# print(ll)
-
-
-print(f'Сегодня в городе {CITY}: {weather}')
-print(f'Температура: {temperature:.1f}\xB0C')
-print(f'Влажность: {humidity}%')
-print(f'Скорость ветра: {wind} м/с')
-link = f'https://static-maps.yandex.ru/1.x/?ll={ll}&map=0.005,0.005&l=sat&pt={ll},pm2dgl'
-# link = f'https://static-maps.yandex.ru/1.x/?ll={ll}&spn=0.005,0.005&l=sat&pt={ll},pm2dgl'
-image = requests.get(link).content
-if image:
-    im = Image.open(io.BytesIO(image)).convert('RGB')
-    im.save('map.jpg')
+# from http.client import responses
+# import requests
+# from PIL import Image
+# import io
+#
+# API_KEY = '59c82cd885057e420a60002ceb04e81e'
+# URL = 'http://api.openweathermap.org/data/2.5/weather'
+# CITY = 'Лондон'
+#
+# params = {
+#     'q': CITY,
+#     'appid': API_KEY,
+#     'units': 'metric',
+#     'lang': 'ru'
+# }
+#
+# response = requests.get(URL, params=params)
+# result = response.json()
+# # print(result)
+#
+# weather = result['weather'][0]['description']
+# temperature = result['main']['temp']
+# humidity = result['main']['humidity']
+# wind = result['wind']['speed']
+# data = result['coord']
+# ll = f'{data['lon']},{data['lat']}'
+# # print(ll)
+#
+#
+# print(f'Сегодня в городе {CITY}: {weather}')
+# print(f'Температура: {temperature:.1f}\xB0C')
+# print(f'Влажность: {humidity}%')
+# print(f'Скорость ветра: {wind} м/с')
+# link = f'https://static-maps.yandex.ru/1.x/?ll={ll}&map=0.005,0.005&l=sat&pt={ll},pm2dgl'
+# # link = f'https://static-maps.yandex.ru/1.x/?ll={ll}&spn=0.005,0.005&l=sat&pt={ll},pm2dgl'
+# image = requests.get(link).content
+# if image:
+#     im = Image.open(io.BytesIO(image)).convert('RGB')
+#     im.save('map.jpg')
 
 # мой вариант, не работает !!!
 # URL ='http:///api.openweathermap.org/data/2.5/weather'
