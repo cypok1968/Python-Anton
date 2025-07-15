@@ -1,29 +1,46 @@
 # Декораторы (определение функции внутри другой функции)
 # Nonlocal использум когда хотим обратиться из внутренней функции к внешней
+import time
 
-def logger(func):
-    counter = 0
-    def decorated_func(*args, **kwargs):
-        nonlocal counter
-        counter += 1
-        print(counter, '->', 'Аргументы', args,
-              'Именованные аргументы:', kwargs)
+def timeit(func):
+    def wrapper(*args, **kwargs):
+        start = time.time()
         result = func(*args, **kwargs)
-        print('____', 'Результат:', result)
-        return (result)
-    return decorated_func
+        finish = time.time()
+        print(f'Функция исполнялась:{finish - start:.4f} сек.')
+        return  result
+    return wrapper
 
-@logger # декорирует имеющуюся функцию (ниже)
-def make_burger(meal='говядиной', onion=False, tomato=False):
-    print('Булочка')
-    if onion:
-        print('Луковые кольца')
-    print('Котлета с', meal)
-    if tomato:
-        print('Помидоры')
-    print('Булочка')
+@timeit
+def test():
+    time.sleep(0.8)
 
-make_burger('бараниной', onion=True)
+
+test()
+
+# def logger(func):
+#     counter = 0
+#     def decorated_func(*args, **kwargs):
+#         nonlocal counter
+#         counter += 1
+#         print(counter, '->', 'Аргументы', args,
+#               'Именованные аргументы:', kwargs)
+#         result = func(*args, **kwargs)
+#         print('____', 'Результат:', result)
+#         return (result)
+#     return decorated_func
+#
+# @logger # декорирует имеющуюся функцию (ниже)
+# def make_burger(meal='говядиной', onion=False, tomato=False):
+#     print('Булочка')
+#     if onion:
+#         print('Луковые кольца')
+#     print('Котлета с', meal)
+#     if tomato:
+#         print('Помидоры')
+#     print('Булочка')
+#
+# make_burger('бараниной', onion=True)
 
 
 # def outer():
@@ -143,6 +160,9 @@ make_burger('бараниной', onion=True)
 # print(f'Температура: {temperature:.1f}\xB0C')
 # print(f'Влажность: {humidity}%')
 # print(f'Скорость ветра: {wind} м/с')
+# data = result['coords']
+# ll = f'{data['lon']},{data['lat']}'
+# print(ll)
 # link = f'https://static-maps.yandex.ru/1.x/?ll=30.325498,59.918305&spn=0.0025,0.0025&l=map&pt=30.325498,59.918305,pm2dgl'
 # # link = f'https://static-maps.yandex.ru/1.x/?ll=30.325498,59.918305&spn=0.0025,0.0025&l=spn&pt=30.325498,59.918305,pm2dgl'
 # # спутниковый снимок
@@ -151,9 +171,7 @@ make_burger('бараниной', onion=True)
 #     # Image.open(io.BytesIO(image)).show() # если просто показать на экране
 #     im = Image.open(io.BytesIO(image)).convert('RGB')
 #     im.save('map.jpg')
-# data = result['coords']
-# ll = f'{data['lon']},{data['lat']}'
-# print(ll)
+
 # конец моего (не рабочего) варианта
 
 # # База данных (запись)
