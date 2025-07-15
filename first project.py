@@ -1,18 +1,56 @@
 # Декораторы (определение функции внутри другой функции)
+# Nonlocal использум когда хотим обратиться из внутренней функции к внешней
 
-def upper_case_print(old_func):
-    def new_func(*args, **kwargs):
-        case = kwargs.pop('case', None)
-        if case =='U':
-            args_up_case = [str(arg).upper() for arg in args]  # декорируем чужую функцию верхним регистром вывода текста
-        elif case =='L':                                      # ИЛИ
-            args_up_case = [str(arg).lower() for arg in args] # декорируем чужую функцию нижним регистром вывода текста
-        return old_func(*args, **kwargs)
-    return  new_func
-new_print = upper_case_print(print)
-new_print('приветствую') # получаем верхний регистр ПРИВЕТСТВУЮ
-new_print('Привет', case='U')
-new_print('Привет', case='L')
+def logger(func):
+    counter = 0
+    def decorated_func(*args, **kwargs):
+        nonlocal counter
+        counter += 1
+        print(counter, '->', 'Аргументы', args,
+              'Именованные аргументы:', kwargs)
+        result = func(*args, **kwargs)
+        print('____', 'Результат:', result)
+        return (result)
+    return decorated_func
+
+@logger # декорирует имеющуюся функцию (ниже)
+def make_burger(meal='говядиной', onion=False, tomato=False):
+    print('Булочка')
+    if onion:
+        print('Луковые кольца')
+    print('Котлета с', meal)
+    if tomato:
+        print('Помидоры')
+    print('Булочка')
+
+make_burger('бараниной', onion=True)
+
+
+# def outer():
+#     x=5
+#
+#
+#     def inner():
+#         nonlocal x
+#         print('Nonlocal x=', x)
+#         x = 10
+#
+# inner()
+# print('New x=', x)
+
+# def upper_case_print(old_func):
+#     def new_func(*args, **kwargs):
+#         case = kwargs.pop('case', None)
+#         if case =='U':
+#             args_up_case = [str(arg).upper() for arg in args]  # декорируем чужую функцию верхним регистром вывода текста
+#         elif case =='L':                                      # ИЛИ
+#             args_up_case = [str(arg).lower() for arg in args] # декорируем чужую функцию нижним регистром вывода текста
+#         return old_func(*args, **kwargs)
+#     return  new_func
+# new_print = upper_case_print(print)
+# new_print('приветствую') # получаем верхний регистр ПРИВЕТСТВУЮ
+# new_print('Привет', case='U')
+# new_print('Привет', case='L')
 
 # def upper_case_print(old_func):
 #     def new_func(*args, **kwargs):
