@@ -1,65 +1,140 @@
-# База данных (запись)
+# Погода через API
+from http.client import responses
+import requests
+from PIL import Image
+import io
+
+API_KEY = '59c82cd885057e420a60002ceb04e81e'
+URL = 'http://api.openweathermap.org/data/2.5/weather'
+CITY = 'Лондон'
+
+params = {
+    'q': CITY,
+    'appid': API_KEY,
+    'units': 'metric',
+    'lang': 'ru'
+}
+
+response = requests.get(URL, params=params)
+result = response.json()
+# print(result)
+
+weather = result['weather'][0]['description']
+temperature = result['main']['temp']
+humidity = result['main']['humidity']
+wind = result['wind']['speed']
+data = result['coord']
+ll = f'{data['lon']},{data['lat']}'
+# print(ll)
 
 
+print(f'Сегодня в городе {CITY}: {weather}')
+print(f'Температура: {temperature:.1f}\xB0C')
+print(f'Влажность: {humidity}%')
+print(f'Скорость ветра: {wind} м/с')
+link = f'https://static-maps.yandex.ru/1.x/?ll={ll}&map=0.005,0.005&l=sat&pt={ll},pm2dgl'
+# link = f'https://static-maps.yandex.ru/1.x/?ll={ll}&spn=0.005,0.005&l=sat&pt={ll},pm2dgl'
+image = requests.get(link).content
+if image:
+    im = Image.open(io.BytesIO(image)).convert('RGB')
+    im.save('map.jpg')
 
-# База данных (чтение)
-"""
-1. Импорт библиотеки SQL
-2. Подключаемся к БД
-3. Назначить "курсор"
-4. Работаем с БД (запросы и ответы)
-5. Подтвердить изменение (commit)
-6. Отключаемся от БД
-"""
-import sqlite3
+# мой вариант, не работает !!!
+# URL ='http:///api.openweathermap.org/data/2.5/weather'
+# CITY = 'Санкт-Петербург' # ввод города для метеоинформации
+#
+# params = {
+#     'q': CITY, # указываем по этому ключу Город
+#     'appid': API_KEY, # указываю свой ключ
+#     'units': 'metric', # указываем систему мер
+#     'lang': 'ru'
+# }
+#
+# response = requests.get(URL, params=params)
+# # print(response)
+# result = response.json()
+# # print(result)
+# weather = ['weather'][0]['description']
+# temperature = result['main']['temp']
+# humidity = result['main']['humidity']
+# wind = result['wind']['speed']
+#
+# print(f'Сегодня в городе {CITY}: {weather}')
+# print(f'Температура: {temperature:.1f}\xB0C')
+# print(f'Влажность: {humidity}%')
+# print(f'Скорость ветра: {wind} м/с')
+# link = f'https://static-maps.yandex.ru/1.x/?ll=30.325498,59.918305&spn=0.0025,0.0025&l=map&pt=30.325498,59.918305,pm2dgl'
+# # link = f'https://static-maps.yandex.ru/1.x/?ll=30.325498,59.918305&spn=0.0025,0.0025&l=spn&pt=30.325498,59.918305,pm2dgl'
+# # спутниковый снимок
+# image = requests.get(link).content
+# if image:
+#     # Image.open(io.BytesIO(image)).show() # если просто показать на экране
+#     im = Image.open(io.BytesIO(image)).convert('RGB')
+#     im.save('map.jpg')
+# data = result['coords']
+# ll = f'{data['lon']},{data['lat']}'
+# print(ll)
+# конец моего (не рабочего) варианта
 
-class Crud: # create, red, update, delite данных в БД
-    def __init__(self, db_path):
-        self._conn = sqlite3.connect(db_path)
-        self._cur = self._conn.cursor()
-
-    def create(self, table_name, name, age):
-        self._cur.execute(
-            f"""
-             INSERT INTO {table_name}(name, age)
-             VALUES(?, ?)
-             """, (name, int(age))
-            )
-
-    def read(self, table_name):
-        res = self._cur.execute(
-            f'SELECT * FROM {table_name}'
-        ).fetchall()
-        for num, name, age in res:
-            print(num, name, age)
-
-    def update(self, table_name, id_num, name=None, age=None):
-        self._cur.execute(
-        query = f'UPDATE {table_name} SET name={name}, age={age} WHERE id = {id_num}'
-        )
-        # print(query)
-        self._cur.execute(
-            query
-        )
-        self._conn.commit()
-
-    def delete(self, id_num, table_name):
-        self._cur.execute(
-            f'DELETE FROM {table_name} WHERE id={id_num}'
-        )
-        self._conn.commit()
-
-    # method override (переопределяем метод уничтожения объекта,
-    # как только закончили работу с объектом удаляется временый объект и закрываются курсор и соединение с БД
-    def __del__(self):
-        self._cur.close() # сносим сначала курсор
-        self._conn.close() # а потом соединение с БД
-
-db = Crud('db/movies.sqlite')
-# db.create('users', 'Егор', 25)
-# db.delete(6, 'users')
-db.update('users', 1, 'Евгений', 27)
-db.read('users')
+# # База данных (запись)
+# # База данных (чтение)
+# """
+# 1. Импорт библиотеки SQL
+# 2. Подключаемся к БД
+# 3. Назначить "курсор"
+# 4. Работаем с БД (запросы и ответы)
+# 5. Подтвердить изменение (commit)
+# 6. Отключаемся от БД
+# """
+# import sqlite3
+#
+# class Crud: # create, red, update, delite данных в БД
+#     def __init__(self, db_path):
+#         self._conn = sqlite3.connect(db_path)
+#         self._cur = self._conn.cursor()
+#
+#     def create(self, table_name, name, age):
+#         self._cur.execute(
+#             f"""
+#              INSERT INTO {table_name}(name, age)
+#              VALUES(?, ?)
+#              """, (name, int(age))
+#             )
+#
+#     def read(self, table_name):
+#         res = self._cur.execute(
+#             f'SELECT * FROM {table_name}'
+#         ).fetchall()
+#         for num, name, age in res:
+#             print(num, name, age)
+#
+#     def update(self, table_name, id_num, name=None, age=None):
+#         self._cur.execute(
+#         query = f'UPDATE {table_name} SET name={name}, age={age} WHERE id = {id_num}'
+#         )
+#         # print(query)
+#         self._cur.execute(
+#             query
+#         )
+#         self._conn.commit()
+#
+#     def delete(self, id_num, table_name):
+#         self._cur.execute(
+#             f'DELETE FROM {table_name} WHERE id={id_num}'
+#         )
+#         self._conn.commit()
+#
+#     # method override (переопределяем метод уничтожения объекта,
+#     # как только закончили работу с объектом удаляется временый объект и закрываются курсор и соединение с БД
+#     def __del__(self):
+#         self._cur.close() # сносим сначала курсор
+#         self._conn.close() # а потом соединение с БД
+#
+# db = Crud('db/movies.sqlite')
+# # db.create('users', 'Егор', 25)
+# # db.delete(6, 'users')
+# db.update('users', 1, 'Евгений', 27)
+# db.read('users')
 
 # import csv
 #
