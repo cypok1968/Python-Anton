@@ -92,3 +92,29 @@ FROM films
 GROUP BY year
 ORDER BY Кол_во DESC
 """
+# Добавление в таблицу БД новых пользователей
+"""
+INSERT INTO
+users(name, age)
+VALUES('Bill', 21),
+('Tom', 20),
+('Tim', 41)
+"""
+
+# изменение возраста по записи, изменение имени, удаление по условию
+"""
+UPDATE users
+SET age=33
+WHERE id=3
+"""
+
+"""
+UPDATE users
+SET age=18, name='Billy'
+WHERE id=2
+"""
+
+"""
+DELETE from users
+WHERE age < 19
+"""
