@@ -1,12 +1,9 @@
 # Введение во Flack
 # MVC-(Model View Controller)
-from fileinput import filename
-
-
 from flask import Flask, url_for
 
-
 app = Flask(__name__)
+debug = False
 
 @app.route('/') # отклик на вызов декоратора
 @app.route('/index') # тот же отклик на вызов другого декоратора
@@ -25,7 +22,7 @@ def about(): # можно задавать ту же функцию, но с д�
 def cd():
     lst = [str(x) for x in reversed(range(10))] # return только!!! строковое представление (str)
                                                 # в т.ч. для *.html
-    lst.append(('Полетели!!!'))
+    lst.append('Полетели!!!')
     #return '\n'.join(lst) # вывод ответа браузера списком в строку
     return '<br>'.join(lst) # вывод ответа браузера списком в столбец
 
@@ -52,7 +49,7 @@ def sample_page():
 
 @app.route('/sample-page2') # app использует -
 def sample_page2():
-    with open ('temp.html', 'r', encoding='utf-8') as html:
+    with open ('temp.html', 'r', encoding='UTF-8') as html:
         return html.read()
 
 # Так делать не будем
@@ -84,8 +81,13 @@ import sqlite3
 # Подключаемся вверху к БД SQL и
 # делаем запрос с отображением в адресной строке браузера ид-номера пользователя
 # для вывода имени и города
+@app.route('/get-user')
 @app.route('/get-user/<int:id_num>')
-def get_user(id_num):
+# def get_user(id_num):
+def get_user(id_num=None): # если запись вводится без номера id,
+                          # то вывод не инфо, а соотв. сообщения
+    if id_num is None:
+        return 'Нет номера записи'
     con = sqlite3.connect('db/movies.sqlite')
     cur = con.cursor()
     query = f'SELECT name, city FROM users WHERE trip_id={id_num}'
