@@ -1,22 +1,53 @@
+# ДЗ 15/07/25 SQL-запрос по количеству командировок
+import sqlite3
+
+
+class Crud:
+    def __init__(self, db_path):
+        self._conn = sqlite3.connect(db_path)
+        self._cur = self._conn.cursor()
+
+    def count(self, table_name):
+        res = self._cur.execute(
+            """
+            SELECT city, count(*) as Количество
+            FROM users
+            GROUP BY city
+            ORDER BY Количество DESC
+            LIMIT 2
+            """
+        ).fetchall()
+
+        for city, count in res:
+            print(f'Количество командировок сотрудников в город {city} - {count}')
+
+        self._cur.close()
+        self._conn.close()
+
+
+db = Crud('db/movies.sqlite')
+db.count('users')
+
+
 # Декораторы (определение функции внутри другой функции)
 # Nonlocal использум когда хотим обратиться из внутренней функции к внешней
-import time
-
-def timeit(func):
-    def wrapper(*args, **kwargs):
-        start = time.time()
-        result = func(*args, **kwargs)
-        finish = time.time()
-        print(f'Функция исполнялась:{finish - start:.4f} сек.')
-        return  result
-    return wrapper
-
-@timeit
-def test():
-    time.sleep(0.8)
-
-
-test()
+# import time
+#
+# def timeit(func):
+#     def wrapper(*args, **kwargs):
+#         start = time.time()
+#         result = func(*args, **kwargs)
+#         finish = time.time()
+#         print(f'Функция исполнялась:{finish - start:.4f} сек.')
+#         return  result
+#     return wrapper
+#
+# @timeit
+# def test():
+#     time.sleep(0.8)
+#
+#
+# test()
 
 # def logger(func):
 #     counter = 0
