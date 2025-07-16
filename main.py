@@ -1,6 +1,6 @@
 # Введение во Flack
 # MVC-(Model View Controller)
-from flask import Flask, url_for
+from flask import Flask, url_for, request # не путать с import request
 
 app = Flask(__name__)
 debug = False
@@ -107,8 +107,21 @@ def get_user(id_num=None): # если запись вводится без но�
     <td>{name}</td>
     <td>{city}</td>
     </tr>
-    </table>
-'''
+    </table>'''
+
+@app.route('/form-test', methods=['POST', 'GET'])
+def form_test():
+    if request.method == 'GET':
+        with open('form.html', 'r', encoding='UTF-8') as html:
+            return html.read()
+    elif request.method == 'POST':
+        print(request.form['gender'])
+        print(request.form['about'])
+        print(request.form['email'])
+        print(request.form['accept'])
+        #request.form['gender']
+        return 'Форма успешно отправлена'
+
 
 if __name__ == '__main__': # запуск приложения веб-сайта на браузере
                            # только после ввода всех функций и запросов!!!
