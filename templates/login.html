@@ -1,20 +1,7 @@
-{% extends "base.html"%}
+{% extends "base.html" %}
 
-{% block conteent %}
+{% block content %}
 <h1>Авторизация</h1>
-<!--<form method="post" novalidate> # поскольку наша форма говорим браузеру не проводить её валидацию-->
-<!--  <div>-->
-<!--    {{ form.csrf_token }}-->
-<!--  </div>-->
-<!--  {% for field in form if field.name != 'csrf_token' %}-->
-<!--  <div>-->
-<!--    {{field.label()}}-->
-<!--    {{field}}-->
-<!--    {% for error in field.errors %}-->
-<!--    <div class="error">{{error}}</div>-->
-<!--    {% endfor %}-->
-<!--  </div>-->
-<!--  {% endfor %}-->
 <form method="post" class="login_form" novalidate>
     {{ form.csrf_token }}
     <p>
@@ -35,6 +22,4 @@
     <p>{{ form.submit(type="submit", class="btn btn-primary")}}</p>
 </form>
 <p>&nbsp;</p>
-  </p>
-  </form>
 {% endblock %}

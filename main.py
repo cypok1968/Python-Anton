@@ -6,11 +6,12 @@
 # DELETE - удаляет указанные данные ("удалить")
 # PATCH - частичное изменение данных, после отправки данных методом POST
 # JINIA - переменные, условия, циклы и т.д.
-# ORM - Object Relational Mapping
+# ORM - Object Relational Mapping (объектно-реляционное отображение)
 import os.path
 from forms.loginform import LoginForm
 from flask import Flask, url_for, request, render_template # не путать с import request
 from werkzeug.utils import secure_filename
+from data import db_session
 import sqlite3
 
 app = Flask(__name__)
@@ -225,8 +226,18 @@ def queue():
     return render_template('vars.html',
                            title='Стоим в очереди')
 
+
+
+
 if __name__ == '__main__': # запуск приложения веб-сайта на браузере
                            # только после ввода всех функций и запросов!!!
     # app.run(host='localhost', port=5000, debug=debug)
     app.run(host='127.0.0.1', port=5000) # вместо имени содержит адрес локального хоста
                                         # localhost:127.0.0.1, тоже будет подключать
+
+# if __name__ == '__main__': # запуск приложения веб-сайта на браузере
+#                            # только после ввода всех функций и запросов!!!
+#     # app.run(host='localhost', port=5000, debug=debug)
+#     db_session.global_init('db/news.sqlite')
+#     app.run(host='127.0.0.1', port=5000) # вместо имени содержит адрес локального хоста
+#                                         # localhost:127.0.0.1, тоже будет подключать
