@@ -125,6 +125,7 @@ def get_user(id_num=None): # если запись вводится без но�
     </tr>
     </table>'''
 
+
 @app.route('/form-test', methods=['POST', 'GET'])
 def form_test():
     if request.method == 'GET':
