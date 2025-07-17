@@ -5,6 +5,7 @@
 # PUT - принудительно заменяет всё на сервере из контекста запроса ("заменить")
 # DELETE - удаляет указанные данные ("удалить")
 # PATCH - частичное изменение данных, после отправки данных методом POST
+
 import os.path
 
 from flask import Flask, url_for, request, render_template # не путать с import request
@@ -24,10 +25,13 @@ def allowed_file(filename):
 @app.route('/') # отклик на вызов декоратора
 @app.route('/index') # тот же отклик на вызов другого декоратора
 def index():
+    params = {}
+    params['user'] = 'слушатель'
+    params['weather'] = 'Хорошая погода'
+    params
     username = 'слушатель'
     return render_template('index.html',
-                           title= 'Приветствие',
-                           user=username)
+                           **params)
 
 
 @app.route('/about')
