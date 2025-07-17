@@ -29,7 +29,7 @@ def index():
     params = {}
     params['user'] = 'слушатель'
     params['weather'] = 'Хорошая погода'
-    params
+    params ['title'] = 'Приветствую'
     username = 'слушатель'
     return render_template('index.html',
                            **params)
@@ -170,11 +170,39 @@ def file_upload():
     return "Ошибка загрузки"
 
 
+@app.route('/numbers')
+@app.route('/numbers/<int:num>')
+def odd_even(num=None):
+    if num is None:
+        return render_template('numbers.html',
+                               title='Нет числа', number='')
+    return render_template('numbers.html',
+                           title='Чёт-нечёт', number=num)
+
+# @app.route('/numbers')
+# def odd_even():
+#     return render_template('numbers.html',
+#                            title='Чёт-нечёт', number=2)
 
 
+app.route('/deals')
+def printlist():
+    deal = ['Помыть посуду', 'Выгулять собаку',
+            'Снять показания счётчика воды' 'Сходить в магазин']
+    return render_template('printlist.html',
+                           deals=deal)
+
+app.route('/queue')
+def queue():
+    # loop.index - номер иттерации начиная с первой иттерации
+    # loop.index0 - номер иттерации начиная с нуля
+    # loop.first - номер первой иттерации
+    # loop.last - номер последней иттерации
+    return render_template('vars.html',
+                           title='Стоим в очереди')
 
 if __name__ == '__main__': # запуск приложения веб-сайта на браузере
                            # только после ввода всех функций и запросов!!!
-    app.run(host='localhost', port=5000, debug=debug)
-    # app.run(host='127.0.0.1', port=5000) # вместо имени содержит адрес локального хоста
+    # app.run(host='localhost', port=5000, debug=debug)
+    app.run(host='127.0.0.1', port=5000) # вместо имени содержит адрес локального хоста
                                         # localhost:127.0.0.1, тоже будет подключать
