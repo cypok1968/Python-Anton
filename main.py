@@ -8,6 +8,7 @@
 
 import os.path
 
+
 from flask import Flask, url_for, request, render_template # не путать с import request
 from werkzeug.utils import secure_filename
 import sqlite3
