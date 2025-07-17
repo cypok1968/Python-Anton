@@ -5,16 +5,17 @@
 # PUT - принудительно заменяет всё на сервере из контекста запроса ("заменить")
 # DELETE - удаляет указанные данные ("удалить")
 # PATCH - частичное изменение данных, после отправки данных методом POST
-
+# JINIA - переменные, условия, циклы и т.д.
+# ORM - Object Relational Mapping
 import os.path
-
-
+from forms.loginform import LoginForm
 from flask import Flask, url_for, request, render_template # не путать с import request
 from werkzeug.utils import secure_filename
 import sqlite3
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'uploads/' # подключаем оператор выгрузки в дир. uploads/
+app.config['SECRET_KEY'] = 'just_secret_key' # генерируем секретный ключ 'just_secren_key'  , чтобы у других не было доступа
 ALLOWED_EXTENSION = ['txt', 'pdf', 'zip', 'jpg', 'png'] # разрешаем выгрузку типов файлов
 debug = False
 
@@ -39,10 +40,19 @@ def about():
       return render_template('about.html',
                            title='О компании')
 
+
 @app.route('/contacts') # тот же отклик на вызов другого декоратора
 def contacts():
       return render_template('/contacts.html',
                            title='Наши контакты')
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        return 'Форма отправлена'
+    return render_template('login.html', title='Авторизация', form=form)
 
 # @app.route('/about')
 # def about(): # можно задавать ту же функцию, но с другим имененем
