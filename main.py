@@ -7,7 +7,7 @@
 # PATCH - частичное изменение данных, после отправки данных методом POST
 import os.path
 
-from flask import Flask, url_for, request # не путать с import request
+from flask import Flask, url_for, request, render_template # не путать с import request
 from werkzeug.utils import secure_filename
 import sqlite3
 
@@ -24,7 +24,10 @@ def allowed_file(filename):
 @app.route('/') # отклик на вызов декоратора
 @app.route('/index') # тот же отклик на вызов другого декоратора
 def index():
-    return 'Привет, Flask'
+    username = 'слушатель'
+    return render_template('index.html',
+                           title= 'Приветствие',
+                           user=username)
 
 
 @app.route('/about')
