@@ -34,12 +34,26 @@ def index():
     return render_template('index.html',
                            **params)
 
+@app.route('/about') # тот же отклик на вызов другого декоратора
+def about():
+      return render_template('about.html',
+                           title='О компании')
 
-@app.route('/about')
-def about(): # можно задавать ту же функцию, но с другим имененем
-             # для каждого декоратора, т.е. нельзя использовать снова имя index
-    print('Вызвана функция about')
-    return 'O нас'
+@app.route('/contacts') # тот же отклик на вызов другого декоратора
+def contacts():
+      return render_template('/contacts.html',
+                           title='Наши контакты')
+
+# @app.route('/about')
+# def about(): # можно задавать ту же функцию, но с другим имененем
+#              # для каждого декоратора, т.е. нельзя использовать снова имя index
+#     print('Вызвана функция about')
+#     return 'O нас'
+#
+# @app.route('/contacts')
+# def contacts():
+#     print('Вызвана функция contacts')
+#     return 'Наши контакты'
 
 
 @app.route('/countdown')
