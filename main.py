@@ -5,10 +5,21 @@
 # PUT - принудительно заменяет всё на сервере из контекста запроса ("заменить")
 # DELETE - удаляет указанные данные ("удалить")
 # PATCH - частичное изменение данных, после отправки данных методом POST
+import os.path
+
 from flask import Flask, url_for, request # не путать с import request
+from werkzeug.utils import secure_filename
+import sqlite3
 
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = 'uploads/' # подключаем оператор выгрузки в дир. uploads/
+ALLOWED_EXTENSION = ['txt', 'pdf', 'zip', 'jpg', 'png'] # разрешаем выгрузку типов файлов
 debug = False
+
+def allowed_file(filename):
+    return ('.' in filename and # разделение записи из-за лимита длины,
+                                # скобка для восприятия как единого целого
+            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSION)
 
 @app.route('/') # отклик на вызов декоратора
 @app.route('/index') # тот же отклик на вызов другого декоратора
@@ -81,7 +92,7 @@ def sample_page2():
 def greeting(user, id_num):
     return f'Привет, {user} c id={id_num}'
 
-import sqlite3
+
 
 # Подключаемся вверху к БД SQL и
 # делаем запрос с отображением в адресной строке браузера ид-номера пользователя
@@ -127,6 +138,30 @@ def form_test():
         # print(request.form['accept'])
         #request.form['gender']
         return 'Форма успешно отправлена'
+
+@app.route('/upload', methods=['POST', 'GET'])
+def file_upload():
+    if request.method == 'GET':
+        with open('upload.html', 'r', encoding='utf-8') as html:
+            return html.read()
+    elif request.method == 'POST':
+        if 'file' not in request.files:
+            return 'Файл не был выбран!!!' # если файл не попадает своим расширением в разрешенный список для выгрузки
+
+        file = request.files['file']
+
+        if file.filename =='':
+            return 'Файл не был выбран!!!' # в случае если указанный файл не имеет расширения
+                                           # или без имени (имя на русском), то есть не опознан прг
+
+        if file and allowed_file(file.filename):
+            new_name = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], new_name)) # выбираем файл и загружаем
+            return f'Файл{new_name} успешно загружен!'
+    return "Ошибка загрузки"
+
+
+
 
 
 if __name__ == '__main__': # запуск приложения веб-сайта на браузере
