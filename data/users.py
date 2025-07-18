@@ -7,7 +7,6 @@ from .db_session import SqlAlchemyBase
 from sqlalchemy import orm
 
 
-class User(SqlAlchemyBase):
 class User(SqlAlchemyBase, UserMixin):
     __tablename__ = 'users'
 
