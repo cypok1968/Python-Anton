@@ -243,6 +243,7 @@ if __name__ == '__main__':
     # db_sess = db_session.create_session()
     # db_sess.add(user)
     # db_sess.commit()
+    # db_sess.commit()
 
 
 # МОЯ СТРАНИЦА от 17/07/25 для чтения комментов (замещена)
