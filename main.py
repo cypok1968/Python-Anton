@@ -264,7 +264,7 @@ if __name__ == '__main__':
     for news in user.news:
         print(news)
     # print(user.id)
-    news = News(title='Third News', content='Third Content',
+    news = News(title='First News', content='First Content',
                  is_private=False)
     user.news.append(news)
     # db_sess.add(news)
