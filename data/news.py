@@ -14,10 +14,17 @@ class News(SqlAlchemyBase):
                              nullable=True)
     content = sqlalchemy.Column(sqlalchemy.String,
                               nullable=True)
+    content = sqlalchemy.Column(sqlalchemy.String,
+                                nullable=True)
     create_date = sqlalchemy.Column(sqlalchemy.DateTime,
                                     default=datetime.datetime.now())
     is_private = sqlalchemy.Column(sqlalchemy.Boolean,
                               default=True)
+                                   default=True)
     user_id = sqlalchemy.Column(sqlalchemy.Integer,
                                         sqlalchemy.ForeignKey("users.id"))
+                                sqlalchemy.ForeignKey("users.id"))
     user = orm.relationship('User')
+
+    def __repr__(self):
+        return f'<News: {self.title}: {self.content}>'
