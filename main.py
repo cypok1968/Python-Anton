@@ -7,22 +7,21 @@
 # PATCH - частичное изменение данных
 # JINJA - переменные, условия, циклы и т.д.
 # ORM - Object Relational Mapping
-# DBeaver - универсальный (мощный) софт для работы с БД SQL (помимо SQLite, менее функциональна)
+# DBeaver - универсальный софт для работы с БД
 import os.path
 import sqlite3
 from sqlite3 import Error
 
-from openpyxl.styles.builtins import title
-
-from forms.loginform import LoginForm
 from flask import Flask, url_for, request, render_template, redirect
 from werkzeug.utils import secure_filename
-from data import db_session
-from data.users import User
-from data.news import News
-from forms.user import Register
-from  flask_login import LoginManager, login_user
 
+from data import db_session
+from data.news import News
+from data.users import User
+from forms.loginform import LoginForm
+from forms.user import Register
+from flask_login import LoginManager, login_user
+from flask_login import LoginManager, login_user, logout_user
 
 app = Flask(__name__)
 
@@ -39,12 +38,11 @@ def allowed_file(filename):
     return '.' in filename and \
         filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+
 @login_manager.user_loader
 def load_user(user_id):
     db_sess = db_session.create_session()
     return db_sess.query(User).get(user_id)
-
-
 
 
 @app.errorhandler(404)
@@ -79,7 +77,6 @@ def contacts():
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        return 'Форма отправлена'
         db_sess = db_session.create_session()
         user = db_sess.query(User).filter(User.email == form.email.data).first()
         if user and user.check_password(form.password.data):
@@ -90,6 +87,11 @@ def login():
                                title='Ошибка авторизации',
                                form=form)
     return render_template('login.html', title='Авторизация', form=form)
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect('/')
 
 
 @app.route('/register', methods=['POST', 'GET'])
