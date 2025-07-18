@@ -16,7 +16,7 @@ from flask import Flask, url_for, request, render_template
 from werkzeug.utils import secure_filename
 from data import db_session
 from data.users import User
-
+from data.news import News
 
 
 app = Flask(__name__)
