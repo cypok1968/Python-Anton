@@ -216,7 +216,7 @@ def queue():
     return render_template('vars.html', title='Стоим в очереди')
 
 
-# # Вывод всех публичных новостей (is_private == False)
+# Вывод всех публичных новостей (is_private == False)
 # @app.road('/news'):
 #     db_sess = db_session.create_session()
 #     all_news = db_sess.query(News).filter(News.is_private != True)
@@ -230,45 +230,61 @@ def queue():
 #     for news in user.news:
 #         print(news)
 #     app.run(host='127.0.0.1', port=5000, debug=debug)
-#
-#     # db_sess = db_session.create_session()
-#     # user = db_sess.query(User).filter(User.id == 1).first()
-#     # for news in user.news:
-#     #     print(news)
-#     # print(user.id)
-#     # news = News(title='Third News', content='Third Content',
-#     #              is_private=False)
-#     # user.news.append(news)
-#     # # db_sess.add(news)
-#     # db_sess.commit()
-#     # user = User()
-#     # db_sess = db_session.create_session()
-#     # user = db_sess.query(User).filter(User.id == 1).first()
-#     # print(user)
-#     # db_sess.delete(user)
-#     # # user.set_username('John')
-#     # db_sess.commit()
-#     # user.name = 'User2'
-#     # user.about = 'Данные про User2'
-#     # user.email = 'b@c.ru'
-#     # db_sess = db_session.create_session()
-#     # db_sess.add(user)
-#     # db_sess.commit()
 
+    # db_sess = db_session.create_session()
+    # user = db_sess.query(User).filter(User.id == 1).first()
+    # for news in user.news:
+    #     print(news)
+    # print(user.id)
+    # news = News(title='Third News', content='Third Content',
+    #              is_private=False)
+    # user.news.append(news)
+    # # db_sess.add(news)
+    # db_sess.commit()
 
 if __name__ == '__main__':
     db_session.global_init('db/news.sqlite')
     # app.run(host='127.0.0.1', port=5000, debug=debug)
     db_sess = db_session.create_session()
     user = db_sess.query(User).filter(User.id == 1).first()
-    for news in user.news:
-        print(news)
+    print(user.id)
+    news = News(title='Second News', content='News Content',
+                user_id=user.id, is_private=False)
+
+    db_sess.add(news)
     # print(user.id)
-    news = News(title='First News', content='First Content',
-                 is_private=False)
+    news = News(title='Third News', content='Third Content',
+                is_private=False)
     user.news.append(news)
     # db_sess.add(news)
     db_sess.commit()
+    # user = User()
+    # db_sess = db_session.create_session()
+    # user = db_sess.query(User).filter(User.id == 1).first()
+    # print(user)
+    # db_sess.delete(user)
+    # # user.set_username('John')
+    # db_sess.commit()
+    # user.name = 'User2'
+    # user.about = 'Данные про User2'
+    # user.email = 'b@c.ru'
+    # db_sess = db_session.create_session()
+    # db_sess.add(user)
+    # db_sess.commit()
+
+# if __name__ == '__main__':
+#     db_session.global_init('db/news.sqlite')
+#     # app.run(host='127.0.0.1', port=5000, debug=debug)
+#     db_sess = db_session.create_session()
+#     user = db_sess.query(User).filter(User.id == 1).first()
+#     for news in user.news:
+#         print(news)
+#     # print(user.id)
+#     news = News(title='First News', content='First Content',
+#                  is_private=False)
+#     user.news.append(news)
+#     # db_sess.add(news)
+#     db_sess.commit()
     # news = News(title='Third News', content='Third Content',
     #              is_private=False)
     # user.news.append(news)
