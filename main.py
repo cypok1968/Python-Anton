@@ -21,9 +21,14 @@ from data import db_session
 from data.users import User
 from data.news import News
 from forms.user import Register
+from  flask_login import LoginManager, login_user
 
 
 app = Flask(__name__)
+
+login_manager = LoginManager()
+login_manager.init_app(app)
+
 app.config['UPLOAD_FOLDER'] = 'uploads/'
 app.config['SECRET_KEY'] = 'just_secret_key'
 ALLOWED_EXTENSIONS = ['txt', 'pdf', 'zip', 'jpg', 'png']
@@ -33,6 +38,13 @@ debug = False
 def allowed_file(filename):
     return '.' in filename and \
         filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+@login_manager.user_loader
+def load_user(user_id):
+    db_sess = db_session.create_session()
+    return db_sess.query(User).get(user_id)
+
+
 
 
 @app.errorhandler(404)
@@ -68,6 +80,15 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         return 'Форма отправлена'
+        db_sess = db_session.create_session()
+        user = db_sess.query(User).filter(User.email == form.email.data).first()
+        if user and user.check_password(form.password.data):
+            login_user(user, remember=form.remember_me.data)
+            return redirect('/')
+        return render_template('login.html',
+                               message='Неверный логин или пароль',
+                               title='Ошибка авторизации',
+                               form=form)
     return render_template('login.html', title='Авторизация', form=form)
 
 
@@ -83,7 +104,6 @@ def register():
                                    form=form)
 
         db_sess = db_session.create_session()
-
         # Если пользователь с таким E-mail в базе уже есть
         if db_sess.query(User).filter(User.email == form.email.data).first():
             return render_template('register.html',
