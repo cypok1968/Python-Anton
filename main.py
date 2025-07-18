@@ -11,13 +11,16 @@
 import os.path
 import sqlite3
 from sqlite3 import Error
+
+from openpyxl.styles.builtins import title
+
 from forms.loginform import LoginForm
-from flask import Flask, url_for, request, render_template
+from flask import Flask, url_for, request, render_template, redirect
 from werkzeug.utils import secure_filename
 from data import db_session
 from data.users import User
 from data.news import News
-
+from forms.user import Register
 
 
 app = Flask(__name__)
@@ -66,6 +69,39 @@ def login():
     if form.validate_on_submit():
         return 'Форма отправлена'
     return render_template('login.html', title='Авторизация', form=form)
+
+
+@app.route('/register', methods=['POST', 'GET'])
+def register():
+    form = Register()
+    if form.validate_on_submit():  # тоже самое, что и request.method == 'POST'
+        # если пароли не совпали
+        if form.password.data != form.password_again.data:
+            return render_template('register.html',
+                                   title='Регистрация',
+                                   message='Пароли не совпадают',
+                                   form=form)
+
+        db_sess = db_session.create_session()
+
+        # Если пользователь с таким E-mail в базе уже есть
+        if db_sess.query(User).filter(User.email == form.email.data).first():
+            return render_template('register.html',
+                                   title='Регистрация',
+                                   message='Такой пользователь уже есть',
+                                   form=form)
+        user = User(
+            name=form.name.data,
+            email=form.email.data,
+            about=form.about.data
+        )
+        user.set_password(form.password.data)
+        db_sess.add(user)
+        db_sess.commit()
+        return redirect('/login')
+    return render_template('register.html',
+                           title='Регистрация', form=form)
+
 
 
 @app.route('/countdown')
