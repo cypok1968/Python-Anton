@@ -217,13 +217,12 @@ def queue():
 if __name__ == '__main__':
     db_session.global_init('db/news.sqlite')
     # app.run(host='127.0.0.1', port=5000, debug=debug)
-    user = User()
     # user = User()
     db_sess = db_session.create_session()
-    first = db_sess.query(User).filter((User.id != 1) | (User.email.not_like('%a%'))).all()
-    print(first)
     user = db_sess.query(User).filter(User.id == 2).first()
     user.name = 'Billy'
+    db_sess.query(User).filter(User.id == 2).delete()
+    # user.set_username('John')
     db_sess.commit()
     print(user)
     # user.name = 'User2'
@@ -231,7 +230,6 @@ if __name__ == '__main__':
     # user.email = 'b@c.ru'
     # db_sess = db_session.create_session()
     # db_sess.add(user)
-
 
 # МОЯ СТРАНИЦА от 17/07/25 для чтения комментов (замещена)
 
