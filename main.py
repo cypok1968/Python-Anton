@@ -1,13 +1,12 @@
-# Введение во Flack
+# Введение во Flask
 # MVC-(Model View Controller)
-# GET - запрашивает данные с сервера (read)
+# GET - запрашивает данные (read)
 # POST - отправляет данные на сервер (submit)
-# PUT - принудительно заменяет всё на сервере из контекста запроса ("заменить")
+# PUT - заменяет всё на сервере из контекста запроса ("заменить")
 # DELETE - удаляет указанные данные ("удалить")
-# PATCH - частичное изменение данных, после отправки данных методом POST
-# JINIA - переменные, условия, циклы и т.д.
-# ORM - Object Relational Mapping (объектно-реляционное отображение)
-
+# PATCH - частичное изменение данных
+# JINJA - переменные, условия, циклы и т.д.
+# ORM - Object Relational Mapping
 import os.path
 from sqlite3 import Error
 
@@ -27,6 +26,11 @@ debug = False
 def allowed_file(filename):
     return '.' in filename and \
         filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+@app.errorhandler(404)
+def not_found(e):
+    return render_template('404.html', title='Не найдено')
 
 
 @app.route('/')
@@ -148,7 +152,6 @@ def get_user(id_num=None):
         if con:
             cur.close()
             con.close()
-
 
 
 @app.route('/form-test', methods=['POST', 'GET'])
