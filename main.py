@@ -95,9 +95,6 @@ def logout():
 
 
 @app.route('/register', methods=['POST', 'GET'])
-
-
-@app.route('/register', methods=['POST', 'GET'])
 def register():
     form = Register()
     if form.validate_on_submit():  # тоже самое, что и request.method == 'POST'
