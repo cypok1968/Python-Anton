@@ -1,4 +1,4 @@
-# Введение во Flask
+## Введение во Flask
 # MVC-(Model View Controller)
 # GET - запрашивает данные (read)
 # POST - отправляет данные на сервер (submit)
@@ -8,15 +8,21 @@
 # JINJA - переменные, условия, циклы и т.д.
 # ORM - Object Relational Mapping
 # DBeaver - универсальный софт для работы с БД
+# SOA - Service Oriented Architecture
+# MSA - Micro Service Architecture
+# REST - REpresentation State Transfer
+# GET - /book/page/50
+# GET - /book
+# POST - /book
+# DELETE - /book/7
 import os.path
 import sqlite3
 from sqlite3 import Error
 
 from flask import Flask, url_for, request, render_template, redirect, abort
-from openpyxl.styles.builtins import title
 from werkzeug.utils import secure_filename
 
-from data import db_session
+from data import db_session, news_api
 from data.news import News
 from data.users import User
 from forms.loginform import LoginForm
@@ -380,6 +386,7 @@ def adminpanel():
 
 if __name__ == '__main__':
     db_session.global_init('db/news.sqlite')
+    app.register_blueprint(news_api.blueprint)
     app.run(host='127.0.0.1', port=5000, debug=debug)
 
     # db_sess = db_session.create_session()
