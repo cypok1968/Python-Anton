@@ -10,6 +10,7 @@
 # DBeaver - универсальный софт для работы с БД
 import os.path
 import sqlite3
+from crypt import methods
 from sqlite3 import Error
 
 from flask import Flask, url_for, request, render_template, redirect
@@ -19,6 +20,7 @@ from data import db_session
 from data.news import News
 from data.users import User
 from forms.loginform import LoginForm
+from forms.news import NewsForm
 from forms.user import Register
 from flask_login import LoginManager, login_user, logout_user, current_user, login_required
 
@@ -293,6 +295,24 @@ def news():
     return render_template('news.html',
                            title='Новости', news=all_news)
 
+@app.route('/newsjob', methods=['GET', 'POST'])
+@login_required
+def add_news():
+    form = NewsForm()
+    if form.validate_on_submit():
+        db_sess = db_session.create_session()
+        news = News()
+        news.title = form.title.data
+        news.content = form.content.data
+        news.is_private = form.is_private.data
+        current_user.news.append(news)
+        db_sess.merge(current_user)
+        db_sess.commit()
+        return redirect('/news')
+    return render_template('newsjob.html',
+                           title='Добавление новости',
+                           form=form)
+
 
 if __name__ == '__main__':
     db_session.global_init('db/news.sqlite')
@@ -321,9 +341,3 @@ if __name__ == '__main__':
     # db_sess = db_session.create_session()
     # db_sess.add(user)
     # db_sess.commit()
-
-
-# МОЯ СТРАНИЦА от 17/07/25 для чтения комментов (замещена)
-
-
-
